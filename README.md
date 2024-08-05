@@ -90,41 +90,13 @@
 
     A JavaScript object is a collection of key-value pairs where the keys are strings (or Symbols) and the values can be of any data type. Objects are used to store and organize data and functions.
 
-    **Object Example:**
-
-    ```javascript
-    const person = {
-      name: "Alice",
-      age: 30,
-      greet: function () {
-        console.log("Hello!");
-      },
-    };
-    ```
-
-    **Object Creation:**
-
-    ```javascript
-    let obj = {
-      property1: "value1",
-      property2: "value2",
-    };
-    ```
-
-13. **How do you create an array in JavaScript?**
-
-    - **Answer:**
-      ```javascript
-      let arr = [1, 2, 3, 4, 5];
-      ```
-
-14. **How do you access object properties?**
-
-    - **Answer:**
-      ```javascript
-      obj.property1;
-      obj["property2"];
-      ```
+    **Methods for Defining JavaScript Objects:**
+    - Using an Object Literal
+    - Using the new Keyword
+    - Using an Object Constructor
+    - Using Object.assign()
+    - Using Object.create()
+    - Using Object.fromEntries()
 
 15. **How do you access array elements?**
 
@@ -135,6 +107,17 @@
 
 16. **What is the `this` keyword in JavaScript?**
     - **Answer:** `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
+
+17. **What is the `this` keyword in traditional and arrow function?**
+    
+    | **Aspect**             | **Traditional Functions**                                                                                   | **Arrow Functions**                                                                      |
+    |------------------------|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+    | **Definition**         | Function expressions and declarations.                                                                     | Functions defined with the arrow syntax (`() => {}`).                                    |
+    | **Binding of `this`**  | Dynamically bound based on the call site.                                                                   | Lexically bound based on the surrounding context where the arrow function is defined.   |
+    | **Method Calls**       | `this` refers to the object that owns the method.                                                           | `this` refers to the object that owns the method (inherits from the surrounding context).|
+    | **Function Calls**     | `this` refers to the global object (`window` in browsers or `global` in Node.js) or `undefined` in strict mode. | `this` refers to the surrounding lexical context (not the global object).                |
+    | **Constructor Calls**  | `this` refers to the newly created object.                                                                   | Not applicable, as arrow functions cannot be used as constructors.                       |
+    | **Usage with Callbacks** | Can lead to issues with `this` binding inside callbacks or nested functions.                               | Preserves the `this` value of the enclosing context, making it useful for callbacks.    |
 
 ### DOM Manipulation
 
