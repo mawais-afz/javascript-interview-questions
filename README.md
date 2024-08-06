@@ -14,9 +14,15 @@
 
 4. **What is the difference between `var`, `let`, and `const`?**
 
-   - `var`: Declares a variable that is function-scoped or globally-scoped, can be re-assigned, and is hoisted.
-   - `let`: Declares a block-scoped variable that can be re-assigned and is not hoisted.
-   - `const`: Declares a block-scoped variable that cannot be re-assigned after its initial assignment.
+   | **Aspect**         | **`var`**                                                                                   | **`let`**                                                                             | **`const`**                                                                     |
+   | ------------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+   | **Scope**          | Function scope or global scope if declared outside a function.                              | Block scope (within curly braces `{}`).                                               | Block scope (within curly braces `{}`).                                         |
+   | **Hoisting**       | Variables are hoisted to the top of their scope and initialized with `undefined`.           | Variables are hoisted to the top of their block but not initialized.                  | Variables are hoisted to the top of their block but not initialized.            |
+   | **Re-declaration** | Can be re-declared within the same scope.                                                   | Cannot be re-declared within the same block.                                          | Cannot be re-declared within the same block.                                    |
+   | **Re-assignment**  | Can be re-assigned new values.                                                              | Can be re-assigned new values.                                                        | Cannot be re-assigned after initial assignment.                                 |
+   | **Initialization** | Can be declared without initialization.                                                     | Must be initialized at the time of declaration or later.                              | Must be initialized at the time of declaration.                                 |
+   | **Usage**          | Can lead to unexpected results due to function scope and hoisting.                          | Provides better control with block scope and avoids some issues with `var`.           | Ensures values remain constant, useful for constants and immutable references.  |
+   | **Examples**       | <code>var x = 10;<br>function test() {<br> var x = 20;<br>}<br>console.log(x); // 10</code> | <code>let y = 10;<br>if (true) {<br> let y = 20;<br>}<br>console.log(y); // 10</code> | <code>const z = 10;<br>z = 20; // Error: Assignment to constant variable</code> |
 
 5. **What is `undefined` in JavaScript?**
 
@@ -91,6 +97,7 @@
     A JavaScript object is a collection of key-value pairs where the keys are strings (or Symbols) and the values can be of any data type. Objects are used to store and organize data and functions.
 
     **Methods for Defining JavaScript Objects:**
+
     - Using an Object Literal
     - Using the new Keyword
     - Using an Object Constructor
@@ -98,26 +105,27 @@
     - Using Object.create()
     - Using Object.fromEntries()
 
-15. **How do you access array elements?**
+13. **How do you access array elements?**
 
     - **Answer:**
       ```javascript
       arr[0]; // accesses the first element
       ```
 
-16. **What is the `this` keyword in JavaScript?**
+14. **What is the `this` keyword in JavaScript?**
+
     - **Answer:** `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
 
-17. **What is the `this` keyword in traditional and arrow function?**
-    
-    | **Aspect**             | **Traditional Functions**                                                                                   | **Arrow Functions**                                                                      |
-    |------------------------|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-    | **Definition**         | Function expressions and declarations.                                                                     | Functions defined with the arrow syntax (`() => {}`).                                    |
-    | **Binding of `this`**  | Dynamically bound based on the call site.                                                                   | Lexically bound based on the surrounding context where the arrow function is defined.   |
-    | **Method Calls**       | `this` refers to the object that owns the method.                                                           | `this` refers to the object that owns the method (inherits from the surrounding context).|
-    | **Function Calls**     | `this` refers to the global object (`window` in browsers or `global` in Node.js) or `undefined` in strict mode. | `this` refers to the surrounding lexical context (not the global object).                |
-    | **Constructor Calls**  | `this` refers to the newly created object.                                                                   | Not applicable, as arrow functions cannot be used as constructors.                       |
-    | **Usage with Callbacks** | Can lead to issues with `this` binding inside callbacks or nested functions.                               | Preserves the `this` value of the enclosing context, making it useful for callbacks.    |
+15. **What is the `this` keyword in traditional and arrow function?**
+
+    | **Aspect**               | **Traditional Functions**                                                                                       | **Arrow Functions**                                                                       |
+    | ------------------------ | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+    | **Definition**           | Function expressions and declarations.                                                                          | Functions defined with the arrow syntax (`() => {}`).                                     |
+    | **Binding of `this`**    | Dynamically bound based on the call site.                                                                       | Lexically bound based on the surrounding context where the arrow function is defined.     |
+    | **Method Calls**         | `this` refers to the object that owns the method.                                                               | `this` refers to the object that owns the method (inherits from the surrounding context). |
+    | **Function Calls**       | `this` refers to the global object (`window` in browsers or `global` in Node.js) or `undefined` in strict mode. | `this` refers to the surrounding lexical context (not the global object).                 |
+    | **Constructor Calls**    | `this` refers to the newly created object.                                                                      | Not applicable, as arrow functions cannot be used as constructors.                        |
+    | **Usage with Callbacks** | Can lead to issues with `this` binding inside callbacks or nested functions.                                    | Preserves the `this` value of the enclosing context, making it useful for callbacks.      |
 
 ### DOM Manipulation
 
