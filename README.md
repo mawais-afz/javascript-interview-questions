@@ -127,8 +127,6 @@
     | **Constructor Calls**    | `this` refers to the newly created object.                                                                      | Not applicable, as arrow functions cannot be used as constructors.                        |
     | **Usage with Callbacks** | Can lead to issues with `this` binding inside callbacks or nested functions.                                    | Preserves the `this` value of the enclosing context, making it useful for callbacks.      |
 
-### DOM Manipulation
-
 16. **What is the DOM?**
 
     - **Answer:** The DOM (Document Object Model) is a programming interface for HTML and XML documents, representing the page so that programs can change the document structure, style, and content.
@@ -154,171 +152,231 @@
       document.getElementsByTagName("div");
       ```
 
-20. **How do you use querySelector to select an element?**
-    - **Answer:**
-      ```javascript
-      document.querySelector(".myClass");
-      ```
+20. **What is difference between querySelector and querySelectorAll?**
 
-### Event Handling
+    | Feature            | `querySelector`                                             | `querySelectorAll`                                                              |
+    | ------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------- |
+    | **Definition**     | Selects the first element that matches a CSS selector.      | Selects all elements that match a CSS selector.                                 |
+    | **Return Type**    | Single `Element` object (or `null` if no match).            | `NodeList` of elements (or an empty `NodeList` if no match).                    |
+    | **Usage**          | `document.querySelector('selector')`                        | `document.querySelectorAll('selector')`                                         |
+    | **Performance**    | Generally faster for single element queries.                | Can be slower if there are many elements because it returns a list.             |
+    | **Example**        | `const firstItem = document.querySelector('.item');`        | `const allItems = document.querySelectorAll('.item');`                          |
+    | **Modification**   | You can directly modify the single element returned.        | You need to iterate over the `NodeList` to modify multiple elements.            |
+    | **Pseudo-Classes** | Supports pseudo-classes like `:first-child`, `:last-child`. | Supports pseudo-classes in a similar way, but applies to all matching elements. |
 
-21. **What is an event in JavaScript?**
+21. **What is an event in JavaScript? How do you add an event listener in JavaScript?**
 
-    - **Answer:** An event is an action or occurrence detected by JavaScript (e.g., clicks, form submissions).
+    An event is an action or occurrence detected by JavaScript. Here's some common JavaScript events:
 
-22. **How do you add an event listener in JavaScript?**
+    - **User Actions**: `click`, `dblclick`, `keydown`, `keyup`, `mousemove`, `scroll`, etc.
+    - **Browser Actions**: `load`, `unload`, `resize`, `focus`, `blur`, etc.
+    - **Form Events**: `submit`, `change`, `input`, `reset`, etc.
+    - **Media Events**: `play`, `pause`, `ended`, `volumechange`, etc.
 
-    - **Answer:**
       ```javascript
       element.addEventListener("click", function () {
         // code to execute
       });
       ```
 
-23. **What are some common JavaScript events?**
+22. **What is event bubbling?**
 
-    - **Answer:** Common events include `click`, `mouseover`, `mouseout`, `keydown`, `keyup`, `load`, and `submit`.
+    Event bubbling is the process by which an event starts at the target element and then bubbles up to its parent elements.
 
-24. **What is event bubbling?**
+23. **What is event capturing?**
+    Event capturing is the opposite of event bubbling, where the event starts from the root and propagates down to the target element.
 
-    - **Answer:** Event bubbling is the process by which an event starts at the target element and then bubbles up to its parent elements.
+24. **What is a Promise in JavaScript? How do you create a Promise?**
 
-25. **What is event capturing?**
-    - **Answer:** Event capturing is the opposite of event bubbling, where the event starts from the root and propagates down to the target element.
+    A Promise is an object representing the eventual completion or failure of an asynchronous operation.
 
-### Promises and Asynchronous Programming
-
-26. **What is a Promise in JavaScript?**
-
-    - **Answer:** A Promise is an object representing the eventual completion or failure of an asynchronous operation.
-
-27. **How do you create a Promise?**
-
-    - **Answer:**
-      ```javascript
-      let myPromise = new Promise((resolve, reject) => {
-        // asynchronous operation
-        if (success) {
-          resolve(result);
-        } else {
-          reject(error);
-        }
-      });
-      ```
-
-28. **What are the states of a Promise?**
-
-    - **Answer:** Pending, Fulfilled, and Rejected.
-
-29. **How do you handle a fulfilled Promise?**
-
-    - **Answer:**
-      ```javascript
-      myPromise.then((result) => {
-        // handle the result
-      });
-      ```
-
-30. **How do you handle a rejected Promise?**
-    - **Answer:**
-      ```javascript
-      myPromise.catch((error) => {
-        // handle the error
-      });
-      ```
-
-### ES6 Features
-
-31. **What is the difference between `==` and `===`?**
-
-    - **Answer:** `==` checks for equality with type conversion, while `===` checks for strict equality without type conversion.
-
-32. **What are template literals?**
-
-    - **Answer:** Template literals are string literals allowing embedded expressions, enclosed by backticks (`` ` ``).
-      ```javascript
-      let name = `John`;
-      let message = `Hello, ${name}!`;
-      ```
-
-33. **What are default parameters in JavaScript functions?**
-
-    - **Answer:** Default parameters allow named parameters to be initialized with default values if no value or `undefined` is passed.
-      ```javascript
-      function myFunction(x = 10) {
-        // x is 10 if not provided
+    ```javascript
+    let myPromise = new Promise((resolve, reject) => {
+      // asynchronous operation
+      if (success) {
+        resolve(result);
+      } else {
+        reject(error);
       }
-      ```
+    });
+    ```
 
-34. **What is destructuring assignment?**
+25. **What are the states of a Promise? **
 
-    - **Answer:** Destructuring assignment is a syntax that allows extracting values from arrays or objects into distinct variables.
-      ```javascript
-      let [a, b] = [1, 2];
-      let { x, y } = { x: 10, y: 20 };
-      ```
+    | State         | Description                                                                                    | Actions                                                |
+    | ------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+    | **Pending**   | The initial state of a Promise. The operation represented by the Promise is not yet completed. | The Promise is waiting for the operation to complete.  |
+    | **Fulfilled** | The operation completed successfully. The Promise has resolved with a result value.            | The `.then()` method can be used to handle the result. |
+    | **Rejected**  | The operation failed. The Promise has been rejected with a reason or error.                    | The `.catch()` method can be used to handle the error. |
 
-35. **What are rest parameters?**
-    - **Answer:** Rest parameters allow a function to accept an indefinite number of arguments as an array.
-      ```javascript
-      function myFunction(...args) {
-        // args is an array of all arguments
-      }
-      ```
+26. **What is the difference between `==` and `===`?**
 
-### Advanced Topics
+    | Feature             | `==` (Equality)                                                                   | `===` (Strict Equality)                                                             |
+    | ------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+    | **Definition**      | Compares two values for equality, performing type conversion if necessary.        | Compares two values for equality without type conversion.                           |
+    | **Type Conversion** | Yes, performs type conversion (coercion) before comparison.                       | No, does not perform type conversion; values must be of the same type.              |
+    | **Usage**           | Often used when you are okay with type coercion and want to check value equality. | Preferred when you need strict type and value equality to avoid unexpected results. |
 
-36. **What is the `map` method in JavaScript?**
+    #### Examples in Code:
 
-    - **Answer:** The `map` method creates a new array populated with the results of calling a provided function on every element in the calling array.
-      ```javascript
-      let newArr = arr.map((element) => element * 2);
-      ```
+    ```javascript
+    // Equality (==) Example
+    console.log(5 == "5"); // true, because '5' is converted to number 5
+    console.log(0 == false); // true, because false is converted to number 0
+    console.log(null == undefined); // true, because null and undefined are considered equal
 
-37. **What is the `filter` method in JavaScript?**
+    // Strict Equality (===) Example
+    console.log(5 === "5"); // false, different types (number and string)
+    console.log(0 === false); // false, different types (number and boolean)
+    console.log(null === undefined); // false, different types (null and undefined)
+    ```
 
-    - **Answer:** The `filter` method creates a new array with all elements that pass the test implemented by the provided function.
-      ```javascript
-      let filteredArr = arr.filter((element) => element > 2);
-      ```
+27. **What are template literals?**
 
-38. **What is the `reduce` method in JavaScript?**
+    Template literals are string literals allowing embedded expressions, enclosed by backticks (`` ` ``).
 
-    - **Answer:** The `reduce` method executes a reducer function on each element of the array, resulting in a single output value.
-      ```javascript
-      let sum = arr.reduce((total, element) => total + element, 0);
-      ```
+    ```javascript
+    let name = `John`;
+    let message = `Hello, ${name}!`;
+    ```
 
-39. **What is a closure in JavaScript?**
+28. **What are default parameters in JavaScript functions?**
 
-    - **Answer:** A closure is a function that retains access to its outer scope variables even after the outer function has finished executing.
-      ```javascript
-      function outerFunction() {
-        let outerVariable = "I'm outside!";
-        function innerFunction() {
-          console.log(outerVariable);
-        }
-        return innerFunction;
-      }
-      ```
+    Default parameters allow named parameters to be initialized with default values if no value or `undefined` is passed.
 
-40. **What is the difference between `call` and `apply`?**
+    ```javascript
+    function myFunction(x = 10) {
+      // x is 10 if not provided
+    }
+    ```
+
+29. **What is destructuring assignment?**
+
+    Destructuring assignment is a syntax that allows extracting values from arrays or objects into distinct variables.
+
+    ```javascript
+    let [a, b] = [1, 2];
+    let { x, y } = { x: 10, y: 20 };
+    ```
+
+30. **What are rest parameters?**
+
+    Rest parameters allow a function to accept an indefinite number of arguments as an array.
+
+    ```javascript
+    function myFunction(...args) {
+      // args is an array of all arguments
+    }
+    ```
+
+31. **What is the `map` method in JavaScript?**
+
+    The `map` method in JavaScript is used to create a new array by applying a function to each element of an existing array. It doesn't modify the original array but instead returns a new array with the results of the function applied to each element.
+
+    ```javascript
+    let newArr = arr.map((element) => element * 2);
+    ```
+
+    #### Common Use Cases
+
+    - **Transforming Data**: Converting data from one format to another.
+    - **Extracting Properties**: Creating an array of specific properties from objects.
+    - **Applying Functions**: Applying a function to each element in an array.
+
+    Here’s another example where we extract names from an array of objects:
+
+    ```javascript
+    const users = [
+      { id: 1, name: "Alice" },
+      { id: 2, name: "Bob" },
+      { id: 3, name: "Charlie" },
+    ];
+
+    // Create a new array containing only the names
+    const names = users.map((user) => user.name);
+
+    console.log(names); // ['Alice', 'Bob', 'Charlie']
+    ```
+
+32. **What is the `filter` method in JavaScript?**
+
+    The `filter` method in JavaScript is used to create a new array containing all elements that pass a test implemented by a provided function. It allows you to filter out elements from an array based on certain criteria without modifying the original array.
+
+    ```javascript
+    const numbers = [5, 12, 8, 130, 44];
+
+    // Create a new array with numbers greater than 10
+    const bigNumbers = numbers.filter((number) => number > 10);
+
+    console.log(bigNumbers); // [12, 130, 44]
+    ```
+
+    ### Common Use Cases
+
+    - **Filtering Data**: Extracting elements that meet specific criteria.
+    - **Removing Items**: Creating a new array that excludes certain elements.
+    - **Selecting Subsets**: Finding elements that match certain conditions from a larger set.
+
+    Here’s another example where we filter an array of objects to find users older than 18:
+
+    ```javascript
+    const users = [
+      { name: "Alice", age: 17 },
+      { name: "Bob", age: 25 },
+      { name: "Charlie", age: 30 },
+      { name: "Dave", age: 15 },
+    ];
+
+    // Create a new array with users older than 18
+    const adults = users.filter((user) => user.age > 18);
+
+    console.log(adults);
+    // [{ name: 'Bob', age: 25 }, { name: 'Charlie', age: 30 }]
+    ```
+
+33. **What is the `reduce` method in JavaScript?**
+
+    The `reduce` method in JavaScript is used to apply a function against an accumulator and each element in an array (from left to right) to reduce it to a single value. It’s often used to perform operations like summing numbers, concatenating strings, or accumulating results based on array elements.
+
+    ```javascript
+    const numbers = [1, 2, 3, 4, 5];
+
+    const sum = numbers.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
+
+    console.log(sum); // Output: 15
+    ```
+
+34. **What is a closure in JavaScript?**
+
+    A closure is a function that retains access to its outer scope variables even after the outer function has finished executing.
+
+    ```javascript
+    function outerFunction(outerVariable) {
+      return function innerFunction(innerVariable) {
+        console.log(`Outer variable: ${outerVariable}`);
+        console.log(`Inner variable: ${innerVariable}`);
+      };
+    }
+
+    const myClosure = outerFunction("outerValue");
+    myClosure("innerValue");
+    ```
+
+35. **What is the difference between `call` and `apply`?**
     - **Answer:** Both `call` and `apply` are used to invoke functions with a specified `this` value, but `call` takes arguments separately, while `apply` takes arguments as an array.
 
 ### Error Handling
 
 41. **What is the `try...catch` statement in JavaScript?**
+
     - **Answer:** The `try...catch` statement allows you to handle exceptions by running code in the `try` block and catching errors in the `catch` block.
       ```javascript
       try {
           // code that may throw an error
       } catch (error) {
           // handle the error
-      ```
-
-## ASSISTANT
-
-      }
       ```
 
 42. **What is the `finally` block in JavaScript?**
@@ -582,22 +640,20 @@
     - **Answer:** `Object.create` sets up prototype inheritance directly, while class inheritance uses the `class` syntax to create a blueprint for objects and their inheritance.
 
 73. **What are getter and setter methods?**
-    - **Answer:** Getter and setter methods
 
-## ASSISTANT
+    - **Answer:** Getter and setter methods are special methods that provide a way to get and set the values of object properties.
 
-are special methods that provide a way to get and set the values of object properties.
-`javascript
-      let obj = {
-          _value: 0,
-          get value() {
-              return this._value;
-          },
-          set value(newValue) {
-              this._value = newValue;
-          }
-      };
-      `
+    ```javascript
+    let obj = {
+      _value: 0,
+      get value() {
+        return this._value;
+      },
+      set value(newValue) {
+        this._value = newValue;
+      },
+    };
+    ```
 
 74. **What is the difference between `Object.keys` and `Object.values`?**
 
