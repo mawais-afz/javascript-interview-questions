@@ -24,15 +24,7 @@
    | **Usage**          | Can lead to unexpected results due to function scope and hoisting.                          | Provides better control with block scope and avoids some issues with `var`.           | Ensures values remain constant, useful for constants and immutable references.  |
    | **Examples**       | <code>var x = 10;<br>function test() {<br> var x = 20;<br>}<br>console.log(x); // 10</code> | <code>let y = 10;<br>if (true) {<br> let y = 20;<br>}<br>console.log(y); // 10</code> | <code>const z = 10;<br>z = 20; // Error: Assignment to constant variable</code> |
 
-5. **What is `undefined` in JavaScript?**
-
-   `undefined` is a variable that has been declared but has not yet been assigned a value.
-
-6. **What is `null` in JavaScript?**
-
-   `null` is an assignment value that represents no value or no object.
-
-7. **What is the difference between `null` and `undefined`?**
+5. **What is the difference between `null` and `undefined`?**
 
    | **Aspect**                             | **`null`**                                                                                                           | **`undefined`**                                                                                                                                                  |
    | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,7 +38,7 @@
    | **Conversion in Primitive Operations** | Null is converted to zero (0) while performing primitive operations.                                                 | Undefined is converted to NaN while performing primitive operations.                                                                                             |
    | **Example**                            | `javascript<br>let y = null;<br>console.log(y); // null<br>`                                                         | `javascript<br>let x;<br>console.log(x); // undefined<br>`                                                                                                       |
 
-8. **What is a function in JavaScript? How do you define a function in JavaScript?**
+6. **What is a function in JavaScript? How do you define a function in JavaScript?**
 
    A function is a block of code designed to perform a particular task, and it is executed when something invokes it.
 
@@ -56,7 +48,7 @@
    }
    ```
 
-9. **What is a function expression?**
+7. **What is a function expression?**
 
    A function expression is a function defined inside an expression instead of a declaration.
 
@@ -66,33 +58,33 @@
    };
    ```
 
-10. **What are arrow functions?**
+8. **What are arrow functions?**
 
-    Arrow functions are a concise syntax for writing function expressions using the `=>` syntax.
+   Arrow functions are a concise syntax for writing function expressions using the `=>` syntax.
 
-    ```javascript
-    const myFunction = () => {
-      // code to be executed
-    };
-    ```
+   ```javascript
+   const myFunction = () => {
+     // code to be executed
+   };
+   ```
 
-11. **What is the difference between function declarations and function expressions?**
+9. **What is the difference between function declarations and function expressions?**
 
-    - **Answer:** Function declarations are hoisted and can be called before they are defined, while function expressions are not hoisted.
-      | **Aspect** | **Function Declarations** | **Function Expressions** |
-      |-----------------------------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-      | **Syntax** | <code>function myFunction() {<br> // code<br>}<code> | <code>const myFunction = function() {<br> // code<br>};<code> |
-      | **Hoisting** | Function declarations are hoisted. The function can be called before its declaration in the code. | Function expressions are not hoisted. They must be defined before they are used. |
-      | **Named or Anonymous** | Can be named. | Can be named or anonymous. |
-      | **Execution Context** | Available throughout the scope in which they are defined, even before the declaration. | Available only after the execution context where they are defined. |
-      | **Usage** | Typically used for defining functions that will be used across multiple places or globally. | Often used for creating functions that are used as arguments or to assign to variables or properties. |
-      | **Example** | <code>function greet() {<br> console.log("Hello!");<br>}<code> | <code>const greet = function() {<br> console.log("Hello!");<br>};<code> |
-      | **Self-Invocation** | Not typically used for self-invocation (immediately-invoked function expressions). | Can be used for self-invocation. Example: <code>(function() {<br> console.log("Immediately Invoked");<br>})();<code>
-      | **Parameters** | Can be defined with parameters, and the function will be available throughout its scope. | Can also be defined with parameters, but must be assigned to a variable before it can be invoked. |
-      | **Binding Behavior** | Bound to the function name within its scope. | Bound to the variable or property it is assigned to. |
-      | **Usage in Object Methods** | Often used directly within objects or as methods in classes. | Often used as methods within objects or classes, especially in ES6 classes. |
+   - **Answer:** Function declarations are hoisted and can be called before they are defined, while function expressions are not hoisted.
+     | **Aspect** | **Function Declarations** | **Function Expressions** |
+     |-----------------------------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+     | **Syntax** | <code>function myFunction() {<br> // code<br>}<code> | <code>const myFunction = function() {<br> // code<br>};<code> |
+     | **Hoisting** | Function declarations are hoisted. The function can be called before its declaration in the code. | Function expressions are not hoisted. They must be defined before they are used. |
+     | **Named or Anonymous** | Can be named. | Can be named or anonymous. |
+     | **Execution Context** | Available throughout the scope in which they are defined, even before the declaration. | Available only after the execution context where they are defined. |
+     | **Usage** | Typically used for defining functions that will be used across multiple places or globally. | Often used for creating functions that are used as arguments or to assign to variables or properties. |
+     | **Example** | <code>function greet() {<br> console.log("Hello!");<br>}<code> | <code>const greet = function() {<br> console.log("Hello!");<br>};<code> |
+     | **Self-Invocation** | Not typically used for self-invocation (immediately-invoked function expressions). | Can be used for self-invocation. Example: <code>(function() {<br> console.log("Immediately Invoked");<br>})();<code>
+     | **Parameters** | Can be defined with parameters, and the function will be available throughout its scope. | Can also be defined with parameters, but must be assigned to a variable before it can be invoked. |
+     | **Binding Behavior** | Bound to the function name within its scope. | Bound to the variable or property it is assigned to. |
+     | **Usage in Object Methods** | Often used directly within objects or as methods in classes. | Often used as methods within objects or classes, especially in ES6 classes. |
 
-12. **What is a JavaScript object? How do you create an object in JavaScript?**
+10. **What is a JavaScript object? How do you create an object in JavaScript?**
 
     A JavaScript object is a collection of key-value pairs where the keys are strings (or Symbols) and the values can be of any data type. Objects are used to store and organize data and functions.
 
@@ -105,18 +97,18 @@
     - Using Object.create()
     - Using Object.fromEntries()
 
-13. **How do you access array elements?**
+11. **How do you access array elements?**
 
     - **Answer:**
       ```javascript
       arr[0]; // accesses the first element
       ```
 
-14. **What is the `this` keyword in JavaScript?**
+12. **What is the `this` keyword in JavaScript?**
 
     - **Answer:** `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
 
-15. **What is the `this` keyword in traditional and arrow function?**
+13. **What is the `this` keyword in traditional and arrow function?**
 
     | **Aspect**               | **Traditional Functions**                                                                                       | **Arrow Functions**                                                                       |
     | ------------------------ | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
@@ -127,32 +119,32 @@
     | **Constructor Calls**    | `this` refers to the newly created object.                                                                      | Not applicable, as arrow functions cannot be used as constructors.                        |
     | **Usage with Callbacks** | Can lead to issues with `this` binding inside callbacks or nested functions.                                    | Preserves the `this` value of the enclosing context, making it useful for callbacks.      |
 
-16. **What is the DOM?**
+14. **What is the DOM?**
 
     - **Answer:** The DOM (Document Object Model) is a programming interface for HTML and XML documents, representing the page so that programs can change the document structure, style, and content.
 
-17. **How do you select an element by ID?**
+15. **How do you select an element by ID?**
 
     - **Answer:**
       ```javascript
       document.getElementById("myElement");
       ```
 
-18. **How do you select elements by class name?**
+16. **How do you select elements by class name?**
 
     - **Answer:**
       ```javascript
       document.getElementsByClassName("myClass");
       ```
 
-19. **How do you select elements by tag name?**
+17. **How do you select elements by tag name?**
 
     - **Answer:**
       ```javascript
       document.getElementsByTagName("div");
       ```
 
-20. **What is difference between querySelector and querySelectorAll?**
+18. **What is difference between querySelector and querySelectorAll?**
 
     | Feature            | `querySelector`                                             | `querySelectorAll`                                                              |
     | ------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------- |
@@ -164,7 +156,7 @@
     | **Modification**   | You can directly modify the single element returned.        | You need to iterate over the `NodeList` to modify multiple elements.            |
     | **Pseudo-Classes** | Supports pseudo-classes like `:first-child`, `:last-child`. | Supports pseudo-classes in a similar way, but applies to all matching elements. |
 
-21. **What is an event in JavaScript? How do you add an event listener in JavaScript?**
+19. **What is an event in JavaScript? How do you add an event listener in JavaScript?**
 
     An event is an action or occurrence detected by JavaScript. Here's some common JavaScript events:
 
@@ -179,14 +171,14 @@
       });
       ```
 
-22. **What is event bubbling?**
+20. **What is event bubbling?**
 
     Event bubbling is the process by which an event starts at the target element and then bubbles up to its parent elements.
 
-23. **What is event capturing?**
+21. **What is event capturing?**
     Event capturing is the opposite of event bubbling, where the event starts from the root and propagates down to the target element.
 
-24. **What is a Promise in JavaScript? How do you create a Promise?**
+22. **What is a Promise in JavaScript? How do you create a Promise?**
 
     A Promise is an object representing the eventual completion or failure of an asynchronous operation.
 
@@ -201,7 +193,7 @@
     });
     ```
 
-25. **What are the states of a Promise? **
+23. **What are the states of a Promise? **
 
     | State         | Description                                                                                    | Actions                                                |
     | ------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
@@ -209,7 +201,7 @@
     | **Fulfilled** | The operation completed successfully. The Promise has resolved with a result value.            | The `.then()` method can be used to handle the result. |
     | **Rejected**  | The operation failed. The Promise has been rejected with a reason or error.                    | The `.catch()` method can be used to handle the error. |
 
-26. **What is the difference between `==` and `===`?**
+24. **What is the difference between `==` and `===`?**
 
     | Feature             | `==` (Equality)                                                                   | `===` (Strict Equality)                                                             |
     | ------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -231,7 +223,7 @@
     console.log(null === undefined); // false, different types (null and undefined)
     ```
 
-27. **What are template literals?**
+25. **What are template literals?**
 
     Template literals are string literals allowing embedded expressions, enclosed by backticks (`` ` ``).
 
@@ -240,7 +232,7 @@
     let message = `Hello, ${name}!`;
     ```
 
-28. **What are default parameters in JavaScript functions?**
+26. **What are default parameters in JavaScript functions?**
 
     Default parameters allow named parameters to be initialized with default values if no value or `undefined` is passed.
 
@@ -250,7 +242,7 @@
     }
     ```
 
-29. **What is destructuring assignment?**
+27. **What is destructuring assignment?**
 
     Destructuring assignment is a syntax that allows extracting values from arrays or objects into distinct variables.
 
@@ -259,7 +251,7 @@
     let { x, y } = { x: 10, y: 20 };
     ```
 
-30. **What are rest parameters?**
+28. **What are rest parameters?**
 
     Rest parameters allow a function to accept an indefinite number of arguments as an array.
 
@@ -269,7 +261,7 @@
     }
     ```
 
-31. **What is the `map` method in JavaScript?**
+29. **What is the `map` method in JavaScript?**
 
     The `map` method in JavaScript is used to create a new array by applying a function to each element of an existing array. It doesn't modify the original array but instead returns a new array with the results of the function applied to each element.
 
@@ -298,7 +290,7 @@
     console.log(names); // ['Alice', 'Bob', 'Charlie']
     ```
 
-32. **What is the `filter` method in JavaScript?**
+30. **What is the `filter` method in JavaScript?**
 
     The `filter` method in JavaScript is used to create a new array containing all elements that pass a test implemented by a provided function. It allows you to filter out elements from an array based on certain criteria without modifying the original array.
 
@@ -334,7 +326,7 @@
     // [{ name: 'Bob', age: 25 }, { name: 'Charlie', age: 30 }]
     ```
 
-33. **What is the `reduce` method in JavaScript?**
+31. **What is the `reduce` method in JavaScript?**
 
     The `reduce` method in JavaScript is used to apply a function against an accumulator and each element in an array (from left to right) to reduce it to a single value. It’s often used to perform operations like summing numbers, concatenating strings, or accumulating results based on array elements.
 
@@ -348,7 +340,7 @@
     console.log(sum); // Output: 15
     ```
 
-34. **What is a closure in JavaScript?**
+32. **What is a closure in JavaScript?**
 
     A closure is a function that retains access to its outer scope variables even after the outer function has finished executing.
 
@@ -364,7 +356,7 @@
     myClosure("innerValue");
     ```
 
-35. **What is the difference between `call` and `apply`?**
+33. **What is the difference between `call` and `apply`?**
     - **Answer:** Both `call` and `apply` are used to invoke functions with a specified `this` value, but `call` takes arguments separately, while `apply` takes arguments as an array.
 
 ### Error Handling
