@@ -70,19 +70,19 @@
 
 9. **What is the difference between function declarations and function expressions?**
 
-   - **Answer:** Function declarations are hoisted and can be called before they are defined, while function expressions are not hoisted.
-     | **Aspect** | **Function Declarations** | **Function Expressions** |
-     |-----------------------------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-     | **Syntax** | <code>function myFunction() {<br> // code<br>}<code> | <code>const myFunction = function() {<br> // code<br>};<code> |
-     | **Hoisting** | Function declarations are hoisted. The function can be called before its declaration in the code. | Function expressions are not hoisted. They must be defined before they are used. |
-     | **Named or Anonymous** | Can be named. | Can be named or anonymous. |
-     | **Execution Context** | Available throughout the scope in which they are defined, even before the declaration. | Available only after the execution context where they are defined. |
-     | **Usage** | Typically used for defining functions that will be used across multiple places or globally. | Often used for creating functions that are used as arguments or to assign to variables or properties. |
-     | **Example** | <code>function greet() {<br> console.log("Hello!");<br>}<code> | <code>const greet = function() {<br> console.log("Hello!");<br>};<code> |
-     | **Self-Invocation** | Not typically used for self-invocation (immediately-invoked function expressions). | Can be used for self-invocation. Example: <code>(function() {<br> console.log("Immediately Invoked");<br>})();<code>
-     | **Parameters** | Can be defined with parameters, and the function will be available throughout its scope. | Can also be defined with parameters, but must be assigned to a variable before it can be invoked. |
-     | **Binding Behavior** | Bound to the function name within its scope. | Bound to the variable or property it is assigned to. |
-     | **Usage in Object Methods** | Often used directly within objects or as methods in classes. | Often used as methods within objects or classes, especially in ES6 classes. |
+   Function declarations are hoisted and can be called before they are defined, while function expressions are not hoisted.
+   | **Aspect** | **Function Declarations** | **Function Expressions** |
+   |-----------------------------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+   | **Syntax** | <code>function myFunction() {<br> // code<br>}<code> | <code>const myFunction = function() {<br> // code<br>};<code> |
+   | **Hoisting** | Function declarations are hoisted. The function can be called before its declaration in the code. | Function expressions are not hoisted. They must be defined before they are used. |
+   | **Named or Anonymous** | Can be named. | Can be named or anonymous. |
+   | **Execution Context** | Available throughout the scope in which they are defined, even before the declaration. | Available only after the execution context where they are defined. |
+   | **Usage** | Typically used for defining functions that will be used across multiple places or globally. | Often used for creating functions that are used as arguments or to assign to variables or properties. |
+   | **Example** | <code>function greet() {<br> console.log("Hello!");<br>}<code> | <code>const greet = function() {<br> console.log("Hello!");<br>};<code> |
+   | **Self-Invocation** | Not typically used for self-invocation (immediately-invoked function expressions). | Can be used for self-invocation. Example: <code>(function() {<br> console.log("Immediately Invoked");<br>})();<code>
+   | **Parameters** | Can be defined with parameters, and the function will be available throughout its scope. | Can also be defined with parameters, but must be assigned to a variable before it can be invoked. |
+   | **Binding Behavior** | Bound to the function name within its scope. | Bound to the variable or property it is assigned to. |
+   | **Usage in Object Methods** | Often used directly within objects or as methods in classes. | Often used as methods within objects or classes, especially in ES6 classes. |
 
 10. **What is a JavaScript object? How do you create an object in JavaScript?**
 
@@ -121,28 +121,26 @@
 
 14. **What is the DOM?**
 
-    - **Answer:** The DOM (Document Object Model) is a programming interface for HTML and XML documents, representing the page so that programs can change the document structure, style, and content.
+    The DOM (Document Object Model) is a programming interface for HTML and XML documents, representing the page so that programs can change the document structure, style, and content.
 
-15. **How do you select an element by ID?**
+15. **How do you select elements in JavaScript?**
 
-    - **Answer:**
-      ```javascript
-      document.getElementById("myElement");
-      ```
+- **By ID:**
 
-16. **How do you select elements by class name?**
+  ```javascript
+  document.getElementById("myElement");
+  ```
 
-    - **Answer:**
-      ```javascript
-      document.getElementsByClassName("myClass");
-      ```
+- **By Class Name:**
 
-17. **How do you select elements by tag name?**
+  ```javascript
+  document.getElementsByClassName("myClass");
+  ```
 
-    - **Answer:**
-      ```javascript
-      document.getElementsByTagName("div");
-      ```
+- **By Tag Name:**
+  ```javascript
+  document.getElementsByTagName("div");
+  ```
 
 18. **What is difference between querySelector and querySelectorAll?**
 
@@ -357,41 +355,68 @@
     ```
 
 33. **What is the difference between `call` and `apply`?**
-    - **Answer:** Both `call` and `apply` are used to invoke functions with a specified `this` value, but `call` takes arguments separately, while `apply` takes arguments as an array.
 
-### Error Handling
+    Both `call` and `apply` are used to invoke functions with a specified `this` value, but `call` takes arguments separately, while `apply` takes arguments as an array.
 
-41. **What is the `try...catch` statement in JavaScript?**
+    ### Examples
 
-    - **Answer:** The `try...catch` statement allows you to handle exceptions by running code in the `try` block and catching errors in the `catch` block.
-      ```javascript
-      try {
-          // code that may throw an error
-      } catch (error) {
-          // handle the error
-      ```
+    **Using `call`:**
 
-42. **What is the `finally` block in JavaScript?**
+    ```javascript
+    function greet(greeting, punctuation) {
+      console.log(greeting + ", " + this.name + punctuation);
+    }
 
-    - **Answer:** The `finally` block contains code that will run regardless of whether an error was thrown or not.
-      ```javascript
-      try {
+    const person = { name: "Alice" };
+
+    greet.call(person, "Hello", "!"); // Output: Hello, Alice!
+    ```
+
+    **Using `apply`:**
+
+    ```javascript
+    function greet(greeting, punctuation) {
+      console.log(greeting + ", " + this.name + punctuation);
+    }
+
+    const person = { name: "Bob" };
+
+    greet.apply(person, ["Hi", "."]); // Output: Hi, Bob.
+    ```
+
+34. **What is the `try...catch` statement in JavaScript?**
+
+    The `try...catch` statement allows you to handle exceptions by running code in the `try` block and catching errors in the `catch` block.
+
+    ```javascript
+    try {
         // code that may throw an error
-      } catch (error) {
+    } catch (error) {
         // handle the error
-      } finally {
-        // code to run regardless of error
-      }
-      ```
+    ```
 
-43. **How do you throw an error in JavaScript?**
+35. **What is the `finally` block in JavaScript?**
+
+    The `finally` block contains code that will run regardless of whether an error was thrown or not.
+
+    ```javascript
+    try {
+      // code that may throw an error
+    } catch (error) {
+      // handle the error
+    } finally {
+      // code to run regardless of error
+    }
+    ```
+
+36. **How do you throw an error in JavaScript?**
 
     - **Answer:**
       ```javascript
       throw new Error("Something went wrong");
       ```
 
-44. **What is a custom error?**
+37. **What is a custom error?**
     - **Answer:** A custom error is an error object that you create to provide specific error messages or codes for different error conditions.
       ```javascript
       class CustomError extends Error {
@@ -596,44 +621,66 @@
 
 69. **What is a higher-order function?**
 
-    - **Answer:** A higher-order function is a function that can take other functions as arguments and/or return a function as its result.
-      ```javascript
-      function higherOrderFunction(callback) {
-        callback();
-      }
-      ```
+    A higher-order function is a function that either takes one or more functions as arguments, returns a function, or both.
+
+    ```javascript
+    function greet(message) {
+      return function (name) {
+        return `${message}, ${name}!`;
+      };
+    }
+
+    const sayHello = greet("Hello");
+    console.log(sayHello("Alice")); // Hello, Alice!
+    ```
 
 70. **What is function currying?**
-    - **Answer:** Function currying is the process of transforming a function with multiple arguments into a series of functions that each take a single argument.
-      ```javascript
-      function curryFunction(a) {
-        return function (b) {
-          return a + b;
-        };
-      }
-      ```
 
-### More on Objects
+    Function currying is the process of transforming a function with multiple arguments into a series of functions that each take a single argument.
+
+    ```javascript
+    function curryAdd(a) {
+      return function (b) {
+        return function (c) {
+          return a + b + c;
+        };
+      };
+    }
+
+    You can use the curried function like this:
+
+    const add5 = curryAdd(5);       // Returns a function that takes `b` and `c`
+    const add5And3 = add5(3);       // Returns a function that takes `c`
+    const result = add5And3(10);
+
+    Alternatively, you can also call the curried function in one line:
+    const result = curryAdd(5)(3)(10); // Returns 18
+    ```
 
 71. **What is prototypal inheritance?**
 
-    - **Answer:** Prototypal inheritance is a feature in JavaScript where objects can inherit properties and methods from other objects.
-      ```javascript
-      let parentObj = {
-        greet: function () {
-          console.log("Hello");
-        },
-      };
-      let childObj = Object.create(parentObj);
-      ```
+    Prototypal inheritance is a feature in JavaScript where objects can inherit properties and methods from other objects.
 
-72. **What is the difference between `Object.create` and class inheritance?**
+    ```javascript
+    const parent = {
+      greet() {
+        console.log("Hello from parent");
+      },
+    };
 
-    - **Answer:** `Object.create` sets up prototype inheritance directly, while class inheritance uses the `class` syntax to create a blueprint for objects and their inheritance.
+    const child = Object.create(parent);
+    child.greet(); // Output: "Hello from parent"
+    ```
+
+72. **What is the difference between `Object.create` and `class inheritance`?**
+
+    `Object.create()` offers a more direct, flexible, and prototype-oriented way to create objects with specific prototypes.
+
+    `Class inheritance` provides a more structured, OOP-like approach to object creation and inheritance, using the class and extends syntax, making it more familiar and readable in many contexts.
 
 73. **What are getter and setter methods?**
 
-    - **Answer:** Getter and setter methods are special methods that provide a way to get and set the values of object properties.
+    Getter and setter methods are special methods that provide a way to get and set the values of object properties.
 
     ```javascript
     let obj = {
@@ -649,148 +696,170 @@
 
 74. **What is the difference between `Object.keys` and `Object.values`?**
 
-    - **Answer:** `Object.keys` returns an array of a given object's own enumerable property names, while `Object.values` returns an array of the object's own enumerable property values.
+    `Object.keys` returns an array of the keys (property names) of an object.
+
+    `Object.values` returns an array of the values corresponding to those keys in an object.
 
 75. **What is the difference between `Object.freeze` and `Object.seal`?**
-    - **Answer:** `Object.freeze` makes an object immutable, while `Object.seal` allows modification of existing properties but prevents adding or removing properties.
 
-### Arrays and Iteration
+    `Object.freeze():`Completely freezes the object, making it fully immutable. You cannot add, delete, or modify properties or their attributes.
+
+    `Object.seal():` Seals the object, allowing modification of existing properties but preventing the addition or deletion of properties. The object's structure is locked, but values of existing properties can still be changed.
 
 76. **What is the `forEach` method in JavaScript?**
 
-    - **Answer:** The `forEach` method executes a provided function once for each array element.
-      ```javascript
-      arr.forEach((element) => {
-        console.log(element);
-      });
-      ```
+    The `forEach` executes the provided callback function once for each array element in order, starting from index 0 to the last index. The `forEach` method does not return a new array or any value; its purpose is purely to perform side effects (e.g., logging, modifying external variables) for each element.
+
+    ```javascript
+    const numbers = [1, 2, 3, 4, 5];
+
+    numbers.forEach(function (number) {
+      console.log(number);
+    });
+    ```
 
 77. **What is the `find` method in JavaScript?**
 
-    - **Answer:** The `find` method returns the value of the first element in the array that satisfies the provided testing function.
-      ```javascript
-      let found = arr.find((element) => element > 10);
-      ```
+    The `find` method returns the value of the first element in the array that satisfies the condition specified in the callback function.
+
+    ```javascript
+    const users = [
+      { id: 1, name: "Alice" },
+      { id: 2, name: "Bob" },
+      { id: 3, name: "Charlie" },
+    ];
+
+    const user = users.find((user) => user.id === 2);
+
+    console.log(user); // Output: { id: 2, name: 'Bob' }
+    ```
 
 78. **What is the `findIndex` method in JavaScript?**
 
-    - **Answer:** The `findIndex` method returns the index of the first element in the array that satisfies the provided testing function.
-      ```javascript
-      let index = arr.findIndex((element) => element > 10);
-      ```
+- **Answer:** The `findIndex` method returns the index of the first element in the array that satisfies the provided testing function.
+  ```javascript
+  let index = arr.findIndex((element) => element > 10);
+  ```
 
 79. **What is the `some` method in JavaScript?**
 
-    - **Answer:** The `some` method tests whether at least one element in the array passes the provided function.
-      ```javascript
-      let hasPositiveNumbers = arr.some((element) => element > 0);
-      ```
+- **Answer:** The `some` method tests whether at least one element in the array passes the provided function.
+  ```javascript
+  let hasPositiveNumbers = arr.some((element) => element > 0);
+  ```
 
 80. **What is the `every` method in JavaScript?**
-    - **Answer:** The `every` method tests whether all elements in the array pass the provided function.
-      ```javascript
-      let allPositiveNumbers = arr.every((element) => element > 0);
-      ```
+
+- **Answer:** The `every` method tests whether all elements in the array pass the provided function.
+  ```javascript
+  let allPositiveNumbers = arr.every((element) => element > 0);
+  ```
 
 ### Strings and Regular Expressions
 
 81. **What is a template literal?**
 
-    - **Answer:** Template literals allow for embedded expressions and multi-line strings using backticks (`` ` ``).
-      ```javascript
-      let name = "John";
-      let message = `Hello, ${name}!`;
-      ```
+- **Answer:** Template literals allow for embedded expressions and multi-line strings using backticks (`` ` ``).
+  ```javascript
+  let name = "John";
+  let message = `Hello, ${name}!`;
+  ```
 
 82. **How do you create a regular expression in JavaScript?**
 
-    - **Answer:**
-      ```javascript
-      let regex = /pattern/;
-      let regexWithFlags = /pattern/g;
-      ```
+- **Answer:**
+  ```javascript
+  let regex = /pattern/;
+  let regexWithFlags = /pattern/g;
+  ```
 
 83. **What are regular expression flags?**
 
-    - **Answer:** Flags are used to modify the behavior of a regular expression. Common flags include `g` (global), `i` (case-insensitive), and `m` (multiline).
+- **Answer:** Flags are used to modify the behavior of a regular expression. Common flags include `g` (global), `i` (case-insensitive), and `m` (multiline).
 
 84. **How do you test a string against a regular expression?**
 
-    - **Answer:**
-      ```javascript
-      let regex = /pattern/;
-      regex.test("string to test"); // returns true or false
-      ```
+- **Answer:**
+  ```javascript
+  let regex = /pattern/;
+  regex.test("string to test"); // returns true or false
+  ```
 
 85. **How do you replace parts of a string using a regular expression?**
-    - **Answer:**
-      ```javascript
-      let newString = "hello world".replace(/world/, "JavaScript");
-      ```
+
+- **Answer:**
+  ```javascript
+  let newString = "hello world".replace(/world/, "JavaScript");
+  ```
 
 ### Best Practices
 
 86. **What are some best practices for writing JavaScript code?**
 
-    - **Answer:** Use `let` and `const` instead of `var`, write descriptive variable names, keep functions small and focused, use comments judiciously, and follow consistent coding conventions.
+- **Answer:** Use `let` and `const` instead of `var`, write descriptive variable names, keep functions small and focused, use comments judiciously, and follow consistent coding conventions.
 
 87. **Why should you avoid using global variables?**
 
-    - **Answer:** Global variables can be accessed from anywhere in the code, which can lead to unexpected behaviors and make the code harder to maintain and debug.
+- **Answer:** Global variables can be accessed from anywhere in the code, which can lead to unexpected behaviors and make the code harder to maintain and debug.
 
 88. **What is the importance of code readability?**
 
-    - **Answer:** Code readability makes it easier for others (and yourself) to understand, maintain, and debug the code.
+- **Answer:** Code readability makes it easier for others (and yourself) to understand, maintain, and debug the code.
 
 89. **What is a polyfill?**
 
-    - **Answer:** A polyfill is a piece of code used to provide modern functionality on older browsers that do not natively support it.
+- **Answer:** A polyfill is a piece of code used to provide modern functionality on older browsers that do not natively support it.
 
 90. **Why should you avoid modifying built-in objects?**
-    - **Answer:** Modifying built-in objects can lead to unpredictable results and compatibility issues, as it changes the expected behavior for all code that uses those objects.
+
+- **Answer:** Modifying built-in objects can lead to unpredictable results and compatibility issues, as it changes the expected behavior for all code that uses those objects.
 
 ### Tools and Environment
 
 91. **What are JavaScript frameworks and libraries?**
 
-    - **Answer:** Frameworks and libraries are pre-written JavaScript code that help developers build applications more efficiently. Popular ones include React, Angular, and Vue.js.
+- **Answer:** Frameworks and libraries are pre-written JavaScript code that help developers build applications more efficiently. Popular ones include React, Angular, and Vue.js.
 
 92. **What is npm?**
 
-    - **Answer:** npm (Node Package Manager) is a package manager for JavaScript that helps manage dependencies and allows you to share code with other developers.
+- **Answer:** npm (Node Package Manager) is a package manager for JavaScript that helps manage dependencies and allows you to share code with other developers.
 
 93. **What is a transpiler?**
 
-    - **Answer:** A transpiler is a tool that converts source code written in one language to another language, such as Babel, which converts ES6+ JavaScript to ES5 for browser compatibility.
+- **Answer:** A transpiler is a tool that converts source code written in one language to another language, such as Babel, which converts ES6+ JavaScript to ES5 for browser compatibility.
 
 94. **What is a linter?**
 
-    - **Answer:** A linter is a tool that analyzes your code for potential errors and coding standard violations. Examples include ESLint and JSHint.
+- **Answer:** A linter is a tool that analyzes your code for potential errors and coding standard violations. Examples include ESLint and JSHint.
 
 95. **What is Webpack?**
-    - **Answer:** Webpack is a module bundler for JavaScript applications, which compiles multiple modules into a single file or a few files.
+
+- **Answer:** Webpack is a module bundler for JavaScript applications, which compiles multiple modules into a single file or a few files.
 
 ### Testing
 
 96. **What is unit testing?**
 
-    - **Answer:** Unit testing is a software testing method where individual units of code are tested in isolation from the rest of the application.
+- **Answer:** Unit testing is a software testing method where individual units of code are tested in isolation from the rest of the application.
 
 97. **What are some JavaScript testing frameworks?**
 
-    - **Answer:** Popular JavaScript testing frameworks include Jest, Mocha, and Jasmine.
+- **Answer:** Popular JavaScript testing frameworks include Jest, Mocha, and Jasmine.
 
 98. **What is Test-Driven Development (TDD)?**
 
-    - **Answer:** TDD is a development process where tests are written before the code itself, ensuring that the code is always tested and meets the required functionality.
+- **Answer:** TDD is a development process where tests are written before the code itself, ensuring that the code is always tested and meets the required functionality.
 
 99. **What is continuous integration (CI)?**
 
-    - **Answer:** CI is a development practice where code changes are automatically tested and integrated into a shared repository multiple times a day.
+- **Answer:** CI is a development practice where code changes are automatically tested and integrated into a shared repository multiple times a day.
 
 100.  **What is a mock object in testing?**
 
-
-    - **Answer:** A mock object simulates the behavior of real objects in controlled ways to test parts of the application without relying on real data or external systems.
+- **Answer:** A mock object simulates the behavior of real objects in controlled ways to test parts of the application without relying on real data or external systems.
 
 These questions cover a wide range of fundamental JavaScript concepts and should help prepare you for basic JavaScript interviews.
+
+```
+
+```
