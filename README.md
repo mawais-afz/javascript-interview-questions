@@ -274,8 +274,6 @@
     document.dispatchEvent(event2);
     ```
 
-    In this example, a custom event named "myCustomEvent" is created with some optional data in the `detail` property. An event listener is added to listen for the custom event, and the event is dispatched to trigger the listener.
-
 21. **What is differance between event bubbling and event capturing?**
 
     | Feature             | Event Bubbling                                                   | Event Capturing                                                |
@@ -351,21 +349,81 @@
 
 25. **What are template literals?**
 
-    Template literals are string literals allowing embedded expressions, enclosed by backticks (`` ` ``).
+    Template literals are a feature in JavaScript that allow for more flexible string creation and manipulation. They are enclosed by backticks (`` ` ``) instead of single or double quotes.
+
+    Key features of template literals include:
+
+    1. **String interpolation**: Embed expressions directly in the string using `${}`.
+    2. **Multi-line strings**: Create strings that span multiple lines without concatenation.
+    3. **Tagged templates**: Use a function to parse the template literal.
+
+    Examples:
 
     ```javascript
-    let name = `John`;
-    let message = `Hello, ${name}!`;
+    // String interpolation
+    const name = "John";
+    console.log(`Hello, ${name}!`); // Output: Hello, John!
+
+    // Multi-line string
+    const multiLine = `
+      This is a
+      multi-line
+      string.
+    `;
+
+    // Expression evaluation
+    console.log(`2 + 2 = ${2 + 2}`); // Output: 2 + 2 = 4
+
+    // Tagged template
+    function myTag(strings, ...values) {
+      return strings.reduce(
+        (result, str, i) => `${result}${str}${values[i] || ""}`,
+        ""
+      );
+    }
+    const taggedResult = myTag`Hello, ${"world"}!`;
+    console.log(taggedResult); // Output: Hello, world!
     ```
 
 26. **What are default parameters in JavaScript functions?**
 
-    Default parameters allow named parameters to be initialized with default values if no value or `undefined` is passed.
+    Default parameters in JavaScript functions allow you to specify default values for function parameters. These default values are used when an argument is not provided or is explicitly set to `undefined` when the function is called.
+
+    Key points about default parameters:
+
+    1. They provide a way to ensure that a parameter always has a value, even if not explicitly passed.
+    2. They can be any valid expression, including function calls.
+    3. They are evaluated at function call time, not at function definition time.
+
+    Example:
 
     ```javascript
-    function myFunction(x = 10) {
-      // x is 10 if not provided
+    function greet(name: string = "Guest", greeting: string = "Hello") {
+      console.log(`${greeting}, ${name}!`);
     }
+
+    greet(); // Output: Hello, Guest!
+    greet("Alice"); // Output: Hello, Alice!
+    greet("Bob", "Hi"); // Output: Hi, Bob!
+    greet(undefined, "Hey"); // Output: Hey, Guest!
+    ```
+
+    In this example, both `name` and `greeting` have default values. If not provided, `name` defaults to "Guest" and `greeting` defaults to "Hello".
+
+    Default parameters can also use more complex expressions:
+
+    ```javascript
+    function calculateTotal(
+      price: number,
+      taxRate: number = 0.1,
+      discount: number = price * 0.05
+    ) {
+      return price + price * taxRate - discount;
+    }
+
+    console.log(calculateTotal(100)); // Uses default taxRate and calculated discount
+    console.log(calculateTotal(100, 0.15)); // Uses provided taxRate and calculated discount
+    console.log(calculateTotal(100, 0.15, 10)); // Uses all provided values
     ```
 
 27. **What is destructuring assignment?**
@@ -379,12 +437,36 @@
 
 28. **What are rest parameters?**
 
-    Rest parameters allow a function to accept an indefinite number of arguments as an array.
+    Rest parameters allow a function to accept an indefinite number of arguments as an array. They are denoted by three dots (...) followed by a parameter name.
 
-    ```typescript
-    function myFunction(...args: any[]) {
-      // args is an array of all arguments
+    Key points about rest parameters:
+
+    1. They collect all remaining arguments into an array.
+    2. They must be the last parameter in a function definition.
+    3. There can only be one rest parameter in a function.
+    4. They provide a cleaner alternative to using the `arguments` object.
+
+    ```javascript
+    function sum(...numbers: number[]): number {
+      return numbers.reduce((total, num) => total + num, 0);
     }
+
+    console.log(sum(1, 2, 3)); // Output: 6
+    console.log(sum(4, 5, 6, 7)); // Output: 22
+    ```
+
+    Rest parameters can also be used with other parameters:
+
+    ```javascript
+    function greet(greeting: string, ...names: string[]): void {
+      names.forEach((name) => console.log(`${greeting}, ${name}!`));
+    }
+
+    greet("Hello", "Alice", "Bob", "Charlie");
+    // Output:
+    // Hello, Alice!
+    // Hello, Bob!
+    // Hello, Charlie!
     ```
 
 29. **What is the `map` method in JavaScript?**
@@ -482,9 +564,13 @@
     myClosure("innerValue");
     ```
 
-33. **What is the difference between `call` and `apply`?**
+33. **What is the difference between `call`, `apply`, and `bind`?**
 
-    Both `call` and `apply` are used to invoke functions with a specified `this` value, but `call` takes arguments separately, while `apply` takes arguments as an array.
+    `call`, `apply`, and `bind` are methods used to manipulate the `this` context of a function in JavaScript. Here's how they differ:
+
+    1. **`call`**: Invokes a function with a specified `this` value and arguments provided individually.
+    2. **`apply`**: Similar to `call`, but accepts arguments as an array.
+    3. **`bind`**: Returns a new function with a fixed `this` value, without immediately executing it.
 
     ### Examples
 
@@ -492,7 +578,7 @@
 
     ```javascript
     function greet(greeting, punctuation) {
-      console.log(greeting + ", " + this.name + punctuation);
+      console.log(`${greeting}, ${this.name}${punctuation}`);
     }
 
     const person = { name: "Alice" };
@@ -504,13 +590,36 @@
 
     ```javascript
     function greet(greeting, punctuation) {
-      console.log(greeting + ", " + this.name + punctuation);
+      console.log(`${greeting}, ${this.name}${punctuation}`);
     }
 
     const person = { name: "Bob" };
 
     greet.apply(person, ["Hi", "."]); // Output: Hi, Bob.
     ```
+
+    **Using `bind`:**
+
+    ```javascript
+    function greet(greeting, punctuation) {
+      console.log(`${greeting}, ${this.name}${punctuation}`);
+    }
+
+    const person = { name: "Charlie" };
+
+    const boundGreet = greet.bind(person);
+    boundGreet("Hey", "!"); // Output: Hey, Charlie!
+
+    // You can also partially apply arguments
+    const greetCharlie = greet.bind(person, "Welcome");
+    greetCharlie("!"); // Output: Welcome, Charlie!
+    ```
+
+    Key differences:
+
+    - `call` and `apply` execute the function immediately, while `bind` returns a new function.
+    - `call` takes arguments separately, `apply` takes them as an array.
+    - `bind` allows for partial application of arguments.
 
 34. **What is the `try...catch` statement in JavaScript?**
 
@@ -539,48 +648,155 @@
 
 36. **How do you throw an error in JavaScript?**
 
-    - **Answer:**
-      ```javascript
-      throw new Error("Something went wrong");
-      ```
+    To throw an error in JavaScript, you use the `throw` statement followed by an `Error` object or any other value. Here are a few examples:
+
+    ```javascript
+    // Throwing a basic Error object
+    throw new Error("Something went wrong");
+
+    // Throwing a custom error message
+    throw "Invalid input";
+
+    // Throwing a specific error type
+    throw new TypeError("Expected a number");
+
+    // Throwing an object with additional information
+    throw {
+      name: "CustomError",
+      message: "An error occurred",
+      code: 500,
+    };
+    ```
+
+    It's generally recommended to throw `Error` objects or instances of `Error` subclasses, as they provide a stack trace and are more informative for debugging.
 
 37. **What is a custom error?**
-    - **Answer:** A custom error is an error object that you create to provide specific error messages or codes for different error conditions.
-      ```javascript
-      class CustomError extends Error {
-        constructor(message) {
-          super(message);
-          this.name = "CustomError";
-        }
+
+    A custom error is a user-defined error type that extends the built-in Error class or one of its subclasses. It allows developers to create specific error types for different scenarios in their application, providing more detailed and contextual error information.
+
+    Key points about custom errors:
+
+    1. They extend the built-in Error class or its subclasses.
+    2. They can include additional properties or methods.
+    3. They allow for more specific error handling.
+    4. They help in creating a consistent error structure across an application.
+
+    Here's an example of how to create and use a custom error:
+
+    ```typescript
+    class CustomError extends Error {
+      constructor(public message: string, public errorCode: string) {
+        super(message);
+        this.name = "CustomError";
+        // Set the prototype explicitly.
+        Object.setPrototypeOf(this, CustomError.prototype);
       }
-      ```
+    }
+
+    // Usage
+    try {
+      throw new CustomError("Something went wrong", "ERR001");
+    } catch (error) {
+      if (error instanceof CustomError) {
+        console.log(
+          `${error.name}: ${error.message} (Code: ${error.errorCode})`
+        );
+      } else {
+        console.log("An unknown error occurred");
+      }
+    }
+    ```
+
+    Benefits of using custom errors:
+
+    1. Improved error classification and handling
+    2. Enhanced debugging capabilities
+    3. Better error reporting and logging
+    4. Increased code readability and maintainability
 
 ### Miscellaneous
 
 45. **What is `typeof` operator in JavaScript?**
 
-    - **Answer:** The `typeof` operator returns a string indicating the type of the operand.
-      ```javascript
-      typeof 123; // "number"
-      typeof "Hello"; // "string"
-      ```
+    - **Answer:** The `typeof` operator in JavaScript is a unary operator that returns a string indicating the type of the unevaluated operand. It's used to determine the type of a value or expression.
+
+    Key points about `typeof`:
+
+    1. It returns a string representing the operand's type.
+    2. It can be used with variables, literals, or expressions.
+    3. It's particularly useful for type checking in conditional statements.
+
+    Examples:
+
+    ```javascript
+    typeof 42; // Returns "number"
+    typeof "Hello"; // Returns "string"
+    typeof true; // Returns "boolean"
+    typeof undefined; // Returns "undefined"
+    typeof null; // Returns "object" (this is a known quirk)
+    typeof {}; // Returns "object"
+    typeof []; // Returns "object"
+    typeof function () {}; // Returns "function"
+    ```
+
+    Note: While `typeof` is generally reliable, it has some limitations:
+
+    - It returns "object" for arrays and null, which can be misleading.
+    - It can't distinguish between different types of objects.
+
+    For more precise type checking, especially with objects, you might need to use other methods like `instanceof` or check for specific properties.
 
 46. **What is `instanceof` operator in JavaScript?**
 
-    - **Answer:** The `instanceof` operator tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
-      ```javascript
-      obj instanceof MyClass;
-      ```
+    The `instanceof` operator tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
+
+    Key points about `instanceof`:
+
+    1. It checks the entire prototype chain, not just the immediate constructor.
+    2. It's useful for type checking of custom objects.
+    3. It can be unreliable with primitive types.
+
+    Example:
+
+    ```javascript
+    class Animal {}
+    class Dog extends Animal {}
+
+    const myDog = new Dog();
+
+    console.log(myDog instanceof Dog); // true
+    console.log(myDog instanceof Animal); // true
+    console.log(myDog instanceof Object); // true
+    console.log(myDog instanceof Array); // false
+    ```
 
 47. **What is a callback function?**
 
-    - **Answer:** A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
-      ```javascript
-      function myFunction(callback) {
-        // code to execute
-        callback();
-      }
-      ```
+    A callback function is a function passed as an argument to another function, which is then invoked inside that function, often after some operation has been completed. Callbacks are commonly used in asynchronous operations, event handling, and to implement higher-order functions.
+
+    Key points about callback functions:
+
+    1. They allow for asynchronous programming in JavaScript.
+    2. They enable the execution of code after a specific task is completed.
+    3. They are fundamental to many JavaScript patterns and libraries.
+
+    Example:
+
+    ```javascript
+    function fetchData(callback) {
+      // Simulating an asynchronous operation
+      setTimeout(() => {
+        const data = { id: 1, name: "John Doe" };
+        callback(data);
+      }, 1000);
+    }
+
+    function processData(data) {
+      console.log("Processed:", data);
+    }
+
+    fetchData(processData);
+    ```
 
 48. **What is `NaN` in JavaScript?**
 
