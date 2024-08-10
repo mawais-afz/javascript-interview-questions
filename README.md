@@ -490,11 +490,24 @@
 
 27. **What is destructuring assignment?**
 
-    Destructuring assignment is a syntax that allows extracting values from arrays or objects into distinct variables.
+    Destructuring assignment is a syntax that allows unpacking/extracting values from arrays or objects into distinct variables, making it easier to work with complex data structures.
+
+    Example with arrays:
 
     ```javascript
-    let [a, b] = [1, 2];
-    let { x, y } = { x: 10, y: 20 };
+    const numbers = [1, 2, 3];
+    const [first, second] = numbers;
+    console.log(first); // Output: 1
+    console.log(second); // Output: 2
+    ```
+
+    Example with objects:
+
+    ```javascript
+    const point = { x: 10, y: 20 };
+    const { x, y } = point;
+    console.log(x); // Output: 10
+    console.log(y); // Output: 20
     ```
 
 28. **What are rest parameters?**
@@ -612,18 +625,32 @@
 
 32. **What is a closure in JavaScript?**
 
-    A closure is a function that retains access to its outer scope variables even after the outer function has finished executing.
+    A closure is a function that retains access to its outer scope variables even after the outer function has finished executing. This allows for data encapsulation and private variables.
 
     ```javascript
-    function outerFunction(outerVariable) {
-      return function innerFunction(innerVariable) {
-        console.log(`Outer variable: ${outerVariable}`);
-        console.log(`Inner variable: ${innerVariable}`);
+    function createCounter() {
+      let count = 0; // This variable is private to the closure
+
+      return {
+        increment: function () {
+          count++;
+          return count;
+        },
+        decrement: function () {
+          count--;
+          return count;
+        },
+        getCount: function () {
+          return count;
+        },
       };
     }
 
-    const myClosure = outerFunction("outerValue");
-    myClosure("innerValue");
+    const counter = createCounter();
+    console.log(counter.increment()); // Output: 1
+    console.log(counter.increment()); // Output: 2
+    console.log(counter.getCount()); // Output: 2
+    console.log(counter.decrement()); // Output: 1
     ```
 
 33. **What is the difference between `call`, `apply`, and `bind`?**
@@ -689,9 +716,10 @@
 
     ```javascript
     try {
-        // code that may throw an error
+      // code that may throw an error
     } catch (error) {
-        // handle the error
+      // handle the error
+    }
     ```
 
 35. **What is the `finally` block in JavaScript?**
@@ -776,11 +804,9 @@
     3. Better error reporting and logging
     4. Increased code readability and maintainability
 
-### Miscellaneous
+38. **What is `typeof` operator in JavaScript?**
 
-45. **What is `typeof` operator in JavaScript?**
-
-    - **Answer:** The `typeof` operator in JavaScript is a unary operator that returns a string indicating the type of the unevaluated operand. It's used to determine the type of a value or expression.
+    The `typeof` operator in JavaScript is a unary operator that returns a string indicating the type of the unevaluated operand. It's used to determine the type of a value or expression.
 
     Key points about `typeof`:
 
@@ -808,7 +834,7 @@
 
     For more precise type checking, especially with objects, you might need to use other methods like `instanceof` or check for specific properties.
 
-46. **What is `instanceof` operator in JavaScript?**
+39. **What is `instanceof` operator in JavaScript?**
 
     The `instanceof` operator tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
 
@@ -832,7 +858,7 @@
     console.log(myDog instanceof Array); // false
     ```
 
-47. **What is a callback function?**
+40. **What is a callback function?**
 
     A callback function is a function passed as an argument to another function, which is then invoked inside that function, often after some operation has been completed. Callbacks are commonly used in asynchronous operations, event handling, and to implement higher-order functions.
 
@@ -860,26 +886,62 @@
     fetchData(processData);
     ```
 
-48. **What is `NaN` in JavaScript?**
+41. **What is `NaN` in JavaScript?**
 
-    - **Answer:** `NaN` stands for "Not-a-Number" and is a value representing an invalid number.
-      ```javascript
-      typeof NaN; // "number"
-      ```
+    `NaN` stands for "Not-a-Number" aand is a special value that indicates/representing an invalid or unrepresentable number.
 
-49. **What is `use strict`?**
+    Key points about `NaN`:
 
-    - **Answer:** `"use strict"` is a directive that enables strict mode, which makes error-checking more robust and prevents the use of certain JavaScript features that are considered problematic.
-      ```javascript
-      "use strict";
-      ```
+    1. `NaN` is of type number, as shown below:
 
-50. **What is the difference between `slice` and `splice`?**
-    - **Answer:** `slice` returns a shallow copy of a portion of an array into a new array, while `splice` changes the contents of an array by removing or replacing existing elements and/or adding new elements.
+    ```javascript
+    typeof NaN; // "number"
+    ```
 
-### More Advanced Questions
+    2. `NaN` is not equal to itself, which can be checked using:
 
-51. **What is `JSON`?**
+    ```javascript
+    console.log(NaN === NaN); // false
+    ```
+
+    3. It is commonly produced by operations like dividing zero by zero or attempting to parse a non-numeric string.
+
+    Example:
+
+    ```javascript
+    console.log(0 / 0); // NaN
+    console.log(parseInt("abc")); // NaN
+    ```
+
+42. **What is `use strict`?**
+
+    `"use strict"` is a directive that enables strict mode, which makes error-checking more robust and prevents the use of certain JavaScript features that are considered problematic.
+
+    ```javascript
+    "use strict";
+    ```
+
+43. **What is the difference between `slice` and `splice`?**
+
+    `slice` creates a new array containing a portion of the original array without modifying it, while `splice` directly alters the original array by removing, replacing, or adding elements.
+
+    **Example of `slice`:**
+
+    ```javascript
+    const fruits = ["Apple", "Banana", "Cherry", "Date"];
+    const citrus = fruits.slice(1, 3); // ['Banana', 'Cherry']
+    console.log(citrus); // Output: ['Banana', 'Cherry']
+    ```
+
+    **Example of `splice`:**
+
+    ```javascript
+    const vegetables = ["Carrot", "Potato", "Cucumber"];
+    vegetables.splice(1, 1, "Tomato"); // Removes 'Potato' and adds 'Tomato'
+    console.log(vegetables); // Output: ['Carrot', 'Tomato', 'Cucumber']
+    ```
+
+44. **What is `JSON`?**
 
     - **Answer:** JSON (JavaScript Object Notation) is a lightweight data-interchange format that's easy for humans to read and write and easy for machines to parse and generate.
       ```javascript
@@ -887,14 +949,14 @@
       let jsonObject = JSON.parse(jsonString);
       ```
 
-52. **How do you convert a JavaScript object to a JSON string?**
+45. **How do you convert a JavaScript object to a JSON string?**
 
     - **Answer:**
       ```javascript
       let jsonString = JSON.stringify({ name: "John", age: 30 });
       ```
 
-53. **What is the `fetch` API?**
+46. **What is the `fetch` API?**
 
     - **Answer:** The `fetch` API is a modern interface for making network requests similar to XMLHttpRequest, but with a more powerful and flexible feature set.
       ```javascript
@@ -903,7 +965,7 @@
         .then((data) => console.log(data));
       ```
 
-54. **What are modules in JavaScript?**
+47. **What are modules in JavaScript?**
 
     - **Answer:** Modules are reusable pieces of code that can be imported and exported, allowing for better organization and separation of concerns.
 
@@ -917,15 +979,15 @@
       import { myFunction } from "./myModule.js";
       ```
 
-55. **What is the difference between `localStorage` and `sessionStorage`?**
+48. **What is the difference between `localStorage` and `sessionStorage`?**
 
     - **Answer:** `localStorage` stores data with no expiration date, while `sessionStorage` stores data for the duration of the page session (data is lost when the page is closed).
 
-56. **What is a Symbol in JavaScript?**
+49. **What is a Symbol in JavaScript?**
 
     - **Answer:** A Symbol is a unique and immutable primitive value and may be used as the key of an object property.
 
-57. **What is the `async`/`await` syntax?**
+50. **What is the `async`/`await` syntax?**
 
     - **Answer:** `async`/`await` is syntax for writing asynchronous code in a more readable and synchronous-looking manner.
       ```javascript
@@ -936,7 +998,7 @@
       }
       ```
 
-58. **What is a generator function?**
+51. **What is a generator function?**
 
     - **Answer:** A generator function is a special type of function that can pause execution and return multiple values using the `yield` keyword.
       ```javascript
@@ -947,7 +1009,7 @@
       }
       ```
 
-59. **What is a Proxy in JavaScript?**
+52. **What is a Proxy in JavaScript?**
 
     - **Answer:** A Proxy object allows you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
       ```javascript
@@ -959,7 +1021,7 @@
       let proxy = new Proxy({}, handler);
       ```
 
-60. **What is a `Set` in JavaScript?**
+53. **What is a `Set` in JavaScript?**
     - **Answer:** A `Set` is a collection of unique values, meaning a value in a `Set` can only occur once.
       ```javascript
       let mySet = new Set([1, 2, 3, 4, 4]);
