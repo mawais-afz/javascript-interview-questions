@@ -84,18 +84,74 @@
    | Binding            | Bound to function name in its scope           | Bound to variable or property it's assigned to         |
    | In Objects/Classes | Often used directly as methods                | Commonly used as methods, especially in ES6 classes    |
 
-10. **What is a JavaScript object? How do you create an object in JavaScript?**
+10. **What is a JavaScript object? What are the possible ways to create objects in JavaScript?**
 
     A JavaScript object is a collection of key-value pairs where the keys are strings (or Symbols) and the values can be of any data type. Objects are used to store and organize data and functions.
 
-    **Methods for Defining JavaScript Objects:**
+    **Methods for Creating JavaScript Objects:**
 
-    - Using an Object Literal
-    - Using the new Keyword
-    - Using an Object Constructor
-    - Using Object.assign()
-    - Using Object.create()
-    - Using Object.fromEntries()
+    1. Using an Object Literal:
+
+       ```javascript
+       const person = {
+         name: "John",
+         age: 30,
+         greet: function () {
+           console.log("Hello!");
+         },
+       };
+       ```
+
+    2. Using the `new` Keyword with Object Constructor:
+
+       ```javascript
+       const person = new Object();
+       person.name = "John";
+       person.age = 30;
+       person.greet = function () {
+         console.log("Hello!");
+       };
+       ```
+
+    3. Using a Constructor Function:
+
+       ```javascript
+       function Person(name, age) {
+         this.name = name;
+         this.age = age;
+         this.greet = function () {
+           console.log("Hello!");
+         };
+       }
+       const person = new Person("John", 30);
+       ```
+
+    4. Using `Object.create()`:
+
+       ```javascript
+       const personProto = {
+         greet: function () {
+           console.log("Hello!");
+         },
+       };
+       const person = Object.create(personProto);
+       person.name = "John";
+       person.age = 30;
+       ```
+
+    5. Using ES6 Class Syntax:
+       ```javascript
+       class Person {
+         constructor(name, age) {
+           this.name = name;
+           this.age = age;
+         }
+         greet() {
+           console.log("Hello!");
+         }
+       }
+       const person = new Person("John", 30);
+       ```
 
 11. **What is the `this` keyword in JavaScript?**
 
@@ -203,12 +259,12 @@
 
 22. **What are the states of a Promise?**
 
-    | State       | Description                                                                                    | Transition                                                | Handling Method |
-    |-------------|------------------------------------------------------------------------------------------------|-----------------------------------------------------------|-----------------|
-    | Pending     | Initial state. The asynchronous operation is not yet complete.                                 | Can transition to either Fulfilled or Rejected            | N/A             |
-    | Fulfilled   | The operation completed successfully. The Promise has a resulting value.                       | Final state. Cannot transition to any other state.        | .then()         |
-    | Rejected    | The operation failed. The Promise has a reason for the failure (usually an error object).      | Final state. Cannot transition to any other state.        | .catch()        |
-    | Settled     | A Promise is settled if it's either Fulfilled or Rejected, but not Pending.                    | Represents both Fulfilled and Rejected states             | .finally()      |
+    | State     | Description                                                                               | Transition                                         | Handling Method |
+    | --------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------- | --------------- |
+    | Pending   | Initial state. The asynchronous operation is not yet complete.                            | Can transition to either Fulfilled or Rejected     | N/A             |
+    | Fulfilled | The operation completed successfully. The Promise has a resulting value.                  | Final state. Cannot transition to any other state. | .then()         |
+    | Rejected  | The operation failed. The Promise has a reason for the failure (usually an error object). | Final state. Cannot transition to any other state. | .catch()        |
+    | Settled   | A Promise is settled if it's either Fulfilled or Rejected, but not Pending.               | Represents both Fulfilled and Rejected states      | .finally()      |
 
 23. **What is the difference between `==` and `===`?**
 
