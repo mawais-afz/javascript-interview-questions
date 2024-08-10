@@ -203,11 +203,12 @@
 
 22. **What are the states of a Promise?**
 
-    | State         | Description                                                                                    | Actions                                                |
-    | ------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-    | **Pending**   | The initial state of a Promise. The operation represented by the Promise is not yet completed. | The Promise is waiting for the operation to complete.  |
-    | **Fulfilled** | The operation completed successfully. The Promise has resolved with a result value.            | The `.then()` method can be used to handle the result. |
-    | **Rejected**  | The operation failed. The Promise has been rejected with a reason or error.                    | The `.catch()` method can be used to handle the error. |
+    | State       | Description                                                                                    | Transition                                                | Handling Method |
+    |-------------|------------------------------------------------------------------------------------------------|-----------------------------------------------------------|-----------------|
+    | Pending     | Initial state. The asynchronous operation is not yet complete.                                 | Can transition to either Fulfilled or Rejected            | N/A             |
+    | Fulfilled   | The operation completed successfully. The Promise has a resulting value.                       | Final state. Cannot transition to any other state.        | .then()         |
+    | Rejected    | The operation failed. The Promise has a reason for the failure (usually an error object).      | Final state. Cannot transition to any other state.        | .catch()        |
+    | Settled     | A Promise is settled if it's either Fulfilled or Rejected, but not Pending.                    | Represents both Fulfilled and Rejected states             | .finally()      |
 
 23. **What is the difference between `==` and `===`?**
 
