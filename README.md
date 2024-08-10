@@ -216,20 +216,67 @@
 
 19. **What is an event in JavaScript? How do you add an event listener in JavaScript?**
 
-    An event is an action or occurrence detected by JavaScript. Here's some common JavaScript events:
+    An event is an action or occurrence that can be detected and handled by JavaScript. Here are some common types of JavaScript events:
 
     - **User Actions**: `click`, `dblclick`, `keydown`, `keyup`, `mousemove`, `scroll`, etc.
     - **Browser Actions**: `load`, `unload`, `resize`, `focus`, `blur`, etc.
     - **Form Events**: `submit`, `change`, `input`, `reset`, etc.
     - **Media Events**: `play`, `pause`, `ended`, `volumechange`, etc.
 
-      ```javascript
-      element.addEventListener("click", function () {
-        // code to execute
-      });
-      ```
+    To add an event listener in JavaScript, you can use the `addEventListener` method. This method attaches an event handler to an element without overwriting existing event handlers. Here is an example:
 
-20. **What is differance between event bubbling and event capturing?**
+    ```javascript
+    element.addEventListener("click", function () {
+      // code to execute when the event is triggered
+    });
+    ```
+
+    You can also use an arrow function for the event handler:
+
+    ```javascript
+    element.addEventListener("click", () => {
+      // code to execute when the event is triggered
+    });
+    ```
+
+20. **What are custom events? How to create a custom event in JavaScript?**
+
+    Custom events are user-defined events that can be created and dispatched in JavaScript to signal that something has happened. They allow developers to create their own events that can be listened to and handled just like built-in events.
+
+    Here's how to create and dispatch a custom event:
+
+    ```javascript
+    // Create a custom event using the Event constructor
+    const event1 = new Event("myEvent");
+
+    // Add an event listener for the custom event
+    document.addEventListener("myEvent", function (event) {
+      console.log("Event triggered using Event constructor");
+    });
+
+    // Dispatch the custom event
+    document.dispatchEvent(event1);
+
+    // Create a custom event using the CustomEvent constructor
+    const event2 = new CustomEvent("myCustomEvent", {
+      detail: { key1: "value1", key2: "value2" }, // optional data to pass with the event
+    });
+
+    // Add an event listener for the custom event
+    document.addEventListener("myCustomEvent", function (event) {
+      console.log(
+        "Custom event triggered using CustomEvent constructor:",
+        event.detail
+      );
+    });
+
+    // Dispatch the custom event
+    document.dispatchEvent(event2);
+    ```
+
+    In this example, a custom event named "myCustomEvent" is created with some optional data in the `detail` property. An event listener is added to listen for the custom event, and the event is dispatched to trigger the listener.
+
+21. **What is differance between event bubbling and event capturing?**
 
     | Feature             | Event Bubbling                                                   | Event Capturing                                                |
     | ------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -242,22 +289,36 @@
     | **Performance**     | Generally faster, as it's the default                            | Can be slightly slower due to additional processing            |
     | **Use Case**        | Useful for event delegation patterns                             | Useful when you need to handle events before they reach target |
 
-21. **What is a Promise in JavaScript? How do you create a Promise?**
+22. **What is a Promise in JavaScript? How do you create a Promise?**
 
     A Promise is an object representing the eventual completion or failure of an asynchronous operation.
 
     ```javascript
-    let myPromise = new Promise((resolve, reject) => {
-      // asynchronous operation
+    // Creating a Promise
+    const myPromise = new Promise((resolve, reject) => {
+      // Asynchronous operation goes here
+      const success = true; // This is just for demonstration
+      const result = "Operation successful";
+      const error = new Error("Operation failed");
+
       if (success) {
         resolve(result);
       } else {
         reject(error);
       }
     });
+
+    // Using the Promise
+    myPromise
+      .then((result) => {
+        console.log(result); // Logs: Operation successful
+      })
+      .catch((error) => {
+        console.error(error); // Logs: Error: Operation failed
+      });
     ```
 
-22. **What are the states of a Promise?**
+23. **What are the states of a Promise?**
 
     | State     | Description                                                                               | Transition                                         | Handling Method |
     | --------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------- | --------------- |
@@ -266,7 +327,7 @@
     | Rejected  | The operation failed. The Promise has a reason for the failure (usually an error object). | Final state. Cannot transition to any other state. | .catch()        |
     | Settled   | A Promise is settled if it's either Fulfilled or Rejected, but not Pending.               | Represents both Fulfilled and Rejected states      | .finally()      |
 
-23. **What is the difference between `==` and `===`?**
+24. **What is the difference between `==` and `===`?**
 
     | Feature             | `==` (Equality)                                                                   | `===` (Strict Equality)                                                             |
     | ------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -288,7 +349,7 @@
     console.log(null === undefined); // false, different types (null and undefined)
     ```
 
-24. **What are template literals?**
+25. **What are template literals?**
 
     Template literals are string literals allowing embedded expressions, enclosed by backticks (`` ` ``).
 
@@ -297,7 +358,7 @@
     let message = `Hello, ${name}!`;
     ```
 
-25. **What are default parameters in JavaScript functions?**
+26. **What are default parameters in JavaScript functions?**
 
     Default parameters allow named parameters to be initialized with default values if no value or `undefined` is passed.
 
@@ -307,7 +368,7 @@
     }
     ```
 
-26. **What is destructuring assignment?**
+27. **What is destructuring assignment?**
 
     Destructuring assignment is a syntax that allows extracting values from arrays or objects into distinct variables.
 
@@ -316,17 +377,17 @@
     let { x, y } = { x: 10, y: 20 };
     ```
 
-27. **What are rest parameters?**
+28. **What are rest parameters?**
 
     Rest parameters allow a function to accept an indefinite number of arguments as an array.
 
-    ```javascript
-    function myFunction(...args) {
+    ```typescript
+    function myFunction(...args: any[]) {
       // args is an array of all arguments
     }
     ```
 
-28. **What is the `map` method in JavaScript?**
+29. **What is the `map` method in JavaScript?**
 
     The `map` method in JavaScript is used to create a new array by applying a function to each element of an existing array. It doesn't modify the original array but instead returns a new array with the results of the function applied to each element.
 
@@ -355,7 +416,7 @@
     console.log(names); // ['Alice', 'Bob', 'Charlie']
     ```
 
-29. **What is the `filter` method in JavaScript?**
+30. **What is the `filter` method in JavaScript?**
 
     The `filter` method in JavaScript is used to create a new array containing all elements that pass a test implemented by a provided function. It allows you to filter out elements from an array based on certain criteria without modifying the original array.
 
@@ -391,7 +452,7 @@
     // [{ name: 'Bob', age: 25 }, { name: 'Charlie', age: 30 }]
     ```
 
-30. **What is the `reduce` method in JavaScript?**
+31. **What is the `reduce` method in JavaScript?**
 
     The `reduce` method in JavaScript is used to apply a function against an accumulator and each element in an array (from left to right) to reduce it to a single value. It’s often used to perform operations like summing numbers, concatenating strings, or accumulating results based on array elements.
 
@@ -405,7 +466,7 @@
     console.log(sum); // Output: 15
     ```
 
-31. **What is a closure in JavaScript?**
+32. **What is a closure in JavaScript?**
 
     A closure is a function that retains access to its outer scope variables even after the outer function has finished executing.
 
@@ -421,7 +482,7 @@
     myClosure("innerValue");
     ```
 
-32. **What is the difference between `call` and `apply`?**
+33. **What is the difference between `call` and `apply`?**
 
     Both `call` and `apply` are used to invoke functions with a specified `this` value, but `call` takes arguments separately, while `apply` takes arguments as an array.
 
@@ -451,7 +512,7 @@
     greet.apply(person, ["Hi", "."]); // Output: Hi, Bob.
     ```
 
-33. **What is the `try...catch` statement in JavaScript?**
+34. **What is the `try...catch` statement in JavaScript?**
 
     The `try...catch` statement allows you to handle exceptions by running code in the `try` block and catching errors in the `catch` block.
 
@@ -462,7 +523,7 @@
         // handle the error
     ```
 
-34. **What is the `finally` block in JavaScript?**
+35. **What is the `finally` block in JavaScript?**
 
     The `finally` block contains code that will run regardless of whether an error was thrown or not.
 
@@ -476,14 +537,14 @@
     }
     ```
 
-35. **How do you throw an error in JavaScript?**
+36. **How do you throw an error in JavaScript?**
 
     - **Answer:**
       ```javascript
       throw new Error("Something went wrong");
       ```
 
-36. **What is a custom error?**
+37. **What is a custom error?**
     - **Answer:** A custom error is an error object that you create to provide specific error messages or codes for different error conditions.
       ```javascript
       class CustomError extends Error {
