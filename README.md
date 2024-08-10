@@ -1,10 +1,10 @@
 # Here are 100 basic JavaScript interview questions along with their answers
 
-1. **What is JavaScript?**<br>
+1. **What is JavaScript?**
 
    JavaScript is a high-level, interpreted programming language used to create interactive effects within web browsers.
 
-2. **What are the data types in JavaScript?**<br>
+2. **What are the data types in JavaScript?**
 
    The main data types in JavaScript are: `Number`, `Bigint`, `String`, `Boolean`, `Object`, `Undefined`, `Null`, and `Symbol`
 
@@ -14,29 +14,30 @@
 
 4. **What is the difference between `var`, `let`, and `const`?**
 
-   | **Aspect**         | **`var`**                                                                                   | **`let`**                                                                             | **`const`**                                                                     |
-   | ------------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-   | **Scope**          | Function scope or global scope if declared outside a function.                              | Block scope (within curly braces `{}`).                                               | Block scope (within curly braces `{}`).                                         |
-   | **Hoisting**       | Variables are hoisted to the top of their scope and initialized with `undefined`.           | Variables are hoisted to the top of their block but not initialized.                  | Variables are hoisted to the top of their block but not initialized.            |
-   | **Re-declaration** | Can be re-declared within the same scope.                                                   | Cannot be re-declared within the same block.                                          | Cannot be re-declared within the same block.                                    |
-   | **Re-assignment**  | Can be re-assigned new values.                                                              | Can be re-assigned new values.                                                        | Cannot be re-assigned after initial assignment.                                 |
-   | **Initialization** | Can be declared without initialization.                                                     | Must be initialized at the time of declaration or later.                              | Must be initialized at the time of declaration.                                 |
-   | **Usage**          | Can lead to unexpected results due to function scope and hoisting.                          | Provides better control with block scope and avoids some issues with `var`.           | Ensures values remain constant, useful for constants and immutable references.  |
-   | **Examples**       | <code>var x = 10;<br>function test() {<br> var x = 20;<br>}<br>console.log(x); // 10</code> | <code>let y = 10;<br>if (true) {<br> let y = 20;<br>}<br>console.log(y); // 10</code> | <code>const z = 10;<br>z = 20; // Error: Assignment to constant variable</code> |
+   | Aspect         | `var`                                             | `let`                                            | `const`                                          |
+   | -------------- | ------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------ |
+   | Scope          | Function or global scope                          | Block scope                                      | Block scope                                      |
+   | Hoisting       | Hoisted and initialized with `undefined`          | Hoisted but not initialized (Temporal Dead Zone) | Hoisted but not initialized (Temporal Dead Zone) |
+   | Re-declaration | Allowed in same scope                             | Not allowed in same block                        | Not allowed in same block                        |
+   | Re-assignment  | Allowed                                           | Allowed                                          | Not allowed                                      |
+   | Initialization | Optional                                          | Optional                                         | Required at declaration                          |
+   | Usage          | Older JavaScript, can lead to unexpected behavior | Modern JavaScript, better scoping control        | Constants and immutable references               |
+   | Example        | `var x = 1; var x = 2; // Allowed`                | `let y = 1; let y = 2; // SyntaxError`           | `const z = 1; z = 2; // TypeError`               |
 
 5. **What is the difference between `null` and `undefined`?**
 
-   | **Aspect**                             | **`null`**                                                                                                           | **`undefined`**                                                                                                                                                  |
-   | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | **Type**                               | `object`                                                                                                             | `undefined`                                                                                                                                                      |
-   | **Meaning**                            | Represents the intentional absence of any object value. Used to explicitly indicate that a variable should be empty. | Indicates that a variable has been declared but not yet initialized with a value. Also used as the default return value of functions without a return statement. |
-   | **Default Value**                      | Must be explicitly assigned.                                                                                         | Automatically assigned to variables that are declared but not initialized.                                                                                       |
-   | **Usage**                              | Used to explicitly signify emptiness or to reset a variable.                                                         | Indicates lack of initialization or absence of value implicitly.                                                                                                 |
-   | **Assignment**                         | It is an assignment value. Can be assigned to a variable to indicate that it does not point to any object.           | It is not an assignment value. It means a variable has been declared but has not yet been assigned a value.                                                      |
-   | **Primitive Value Representation**     | Represents the null, empty, or non-existent reference.                                                               | Used when a variable has not been assigned a value.                                                                                                              |
-   | **Indicates Absence Of**               | Indicates the absence of a value for a variable.                                                                     | Indicates the absence of the variable itself.                                                                                                                    |
-   | **Conversion in Primitive Operations** | Null is converted to zero (0) while performing primitive operations.                                                 | Undefined is converted to NaN while performing primitive operations.                                                                                             |
-   | **Example**                            | `javascript<br>let y = null;<br>console.log(y); // null<br>`                                                         | `javascript<br>let x;<br>console.log(x); // undefined<br>`                                                                                                       |
+   | Aspect                   | `null`                                                     | `undefined`                                                |
+   | ------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------- |
+   | Type                     | `object`                                                   | `undefined`                                                |
+   | Meaning                  | Intentional absence of any object value                    | Variable declared but not initialized                      |
+   | Assignment               | Explicitly assigned                                        | Default value for uninitialized variables                  |
+   | Usage                    | Explicitly signify emptiness or reset a variable           | Indicates lack of initialization                           |
+   | In comparisons           | `null == undefined` is true, `null === undefined` is false | `undefined == null` is true, `undefined === null` is false |
+   | In arithmetic operations | Converted to 0                                             | Converted to NaN                                           |
+   | Function return          | Explicitly returned to indicate no object                  | Default return value if no return statement                |
+   | typeof                   | Returns "object"                                           | Returns "undefined"                                        |
+   | JSON serialization       | Serialized as "null"                                       | Omitted from JSON output                                   |
+   | Example                  | `let obj = null;`                                          | `let var;` or `let obj = undefined;`                       |
 
 6. **What is a function in JavaScript? How do you define a function in JavaScript?**
 
@@ -70,19 +71,18 @@
 
 9. **What is the difference between function declarations and function expressions?**
 
-   Function declarations are hoisted and can be called before they are defined, while function expressions are not hoisted.
-   | **Aspect** | **Function Declarations** | **Function Expressions** |
-   |-----------------------------|----------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-   | **Syntax** | <code>function myFunction() {<br> // code<br>}<code> | <code>const myFunction = function() {<br> // code<br>};<code> |
-   | **Hoisting** | Function declarations are hoisted. The function can be called before its declaration in the code. | Function expressions are not hoisted. They must be defined before they are used. |
-   | **Named or Anonymous** | Can be named. | Can be named or anonymous. |
-   | **Execution Context** | Available throughout the scope in which they are defined, even before the declaration. | Available only after the execution context where they are defined. |
-   | **Usage** | Typically used for defining functions that will be used across multiple places or globally. | Often used for creating functions that are used as arguments or to assign to variables or properties. |
-   | **Example** | <code>function greet() {<br> console.log("Hello!");<br>}<code> | <code>const greet = function() {<br> console.log("Hello!");<br>};<code> |
-   | **Self-Invocation** | Not typically used for self-invocation (immediately-invoked function expressions). | Can be used for self-invocation. Example: <code>(function() {<br> console.log("Immediately Invoked");<br>})();<code>
-   | **Parameters** | Can be defined with parameters, and the function will be available throughout its scope. | Can also be defined with parameters, but must be assigned to a variable before it can be invoked. |
-   | **Binding Behavior** | Bound to the function name within its scope. | Bound to the variable or property it is assigned to. |
-   | **Usage in Object Methods** | Often used directly within objects or as methods in classes. | Often used as methods within objects or classes, especially in ES6 classes. |
+   | Aspect             | Function Declarations                         | Function Expressions                                   |
+   | ------------------ | --------------------------------------------- | ------------------------------------------------------ |
+   | Syntax             | `function myFunction() { ... }`               | `const myFunction = function() { ... };`               |
+   | Hoisting           | Hoisted; can be called before declaration     | Not hoisted; must be defined before use                |
+   | Named/Anonymous    | Always named                                  | Can be named or anonymous                              |
+   | Availability       | Available throughout their scope              | Available only after declaration                       |
+   | Usage              | Global functions, widely used functions       | Local scopes, callbacks, assignments                   |
+   | Example            | `function greet() { console.log("Hello!"); }` | `const greet = function() { console.log("Hello!"); };` |
+   | Self-Invocation    | Not typically used for IIFE                   | Can be used for IIFE: `(function() { ... })();`        |
+   | Flexibility        | Less flexible, always named                   | More flexible, can be anonymous or named               |
+   | Binding            | Bound to function name in its scope           | Bound to variable or property it's assigned to         |
+   | In Objects/Classes | Often used directly as methods                | Commonly used as methods, especially in ES6 classes    |
 
 10. **What is a JavaScript object? How do you create an object in JavaScript?**
 
@@ -103,14 +103,17 @@
 
 12. **What is the `this` keyword in traditional and arrow function?**
 
-    | **Aspect**               | **Traditional Functions**                                                                                       | **Arrow Functions**                                                                       |
-    | ------------------------ | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-    | **Definition**           | Function expressions and declarations.                                                                          | Functions defined with the arrow syntax (`() => {}`).                                     |
-    | **Binding of `this`**    | Dynamically bound based on the call site.                                                                       | Lexically bound based on the surrounding context where the arrow function is defined.     |
-    | **Method Calls**         | `this` refers to the object that owns the method.                                                               | `this` refers to the object that owns the method (inherits from the surrounding context). |
-    | **Function Calls**       | `this` refers to the global object (`window` in browsers or `global` in Node.js) or `undefined` in strict mode. | `this` refers to the surrounding lexical context (not the global object).                 |
-    | **Constructor Calls**    | `this` refers to the newly created object.                                                                      | Not applicable, as arrow functions cannot be used as constructors.                        |
-    | **Usage with Callbacks** | Can lead to issues with `this` binding inside callbacks or nested functions.                                    | Preserves the `this` value of the enclosing context, making it useful for callbacks.      |
+    | **Aspect**             | **Traditional Functions**                                                                          | **Arrow Functions**                                                                     |
+    | ---------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+    | **Definition**         | Function expressions and declarations.                                                             | Functions defined with the arrow syntax (`() => {}`).                                   |
+    | **Binding of `this`**  | Dynamically bound based on how the function is called.                                             | Lexically bound to the surrounding context where the arrow function is defined.         |
+    | **Method Calls**       | `this` refers to the object that owns the method.                                                  | `this` inherits from the enclosing scope (usually the surrounding function or object).  |
+    | **Function Calls**     | `this` is global object (`window` in browsers, `global` in Node.js) or `undefined` in strict mode. | `this` retains the value from the enclosing lexical context.                            |
+    | **Constructor Calls**  | `this` refers to the newly created instance when used with `new`.                                  | Cannot be used as constructors. Will throw an error if used with `new`.                 |
+    | **Event Handlers**     | `this` typically refers to the element that triggered the event.                                   | `this` refers to the context where the arrow function is defined, not the event target. |
+    | **Explicit Binding**   | Can use `.call()`, `.apply()`, or `.bind()` to explicitly set `this`.                              | Cannot be bound to a different `this` value; ignores attempts to change `this`.         |
+    | **Usage in Objects**   | Commonly used for object methods when `this` should refer to the object.                           | Useful for callbacks and functions that don't need their own `this` context.            |
+    | **`arguments` Object** | Has access to the `arguments` object.                                                              | Does not have its own `arguments` object; inherits from the enclosing scope if needed.  |
 
 13. **What is the DOM?**
 
@@ -170,14 +173,20 @@
       });
       ```
 
-20. **What is event bubbling?**
+20. **What is differance between event bubbling and event capturing?**
 
-    Event bubbling is the process by which an event starts at the target element and then bubbles up to its parent elements.
+    | Feature             | Event Bubbling                                                   | Event Capturing                                                |
+    | ------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
+    | **Direction**       | Bottom-up: From target element to root                           | Top-down: From root to target element                          |
+    | **Order**           | Inner elements first, then outer elements                        | Outer elements first, then inner elements                      |
+    | **Default**         | Default behavior in most browsers                                | Must be explicitly enabled                                     |
+    | **Usage**           | More commonly used                                               | Less commonly used                                             |
+    | **Implementation**  | `addEventListener(event, handler, false)` or omit third argument | `addEventListener(event, handler, true)`                       |
+    | **Browser Support** | Supported in all modern browsers                                 | Supported in most modern browsers, but less universally        |
+    | **Performance**     | Generally faster, as it's the default                            | Can be slightly slower due to additional processing            |
+    | **Use Case**        | Useful for event delegation patterns                             | Useful when you need to handle events before they reach target |
 
-21. **What is event capturing?**
-    Event capturing is the opposite of event bubbling, where the event starts from the root and propagates down to the target element.
-
-22. **What is a Promise in JavaScript? How do you create a Promise?**
+21. **What is a Promise in JavaScript? How do you create a Promise?**
 
     A Promise is an object representing the eventual completion or failure of an asynchronous operation.
 
@@ -192,7 +201,7 @@
     });
     ```
 
-23. **What are the states of a Promise?**
+22. **What are the states of a Promise?**
 
     | State         | Description                                                                                    | Actions                                                |
     | ------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
@@ -200,7 +209,7 @@
     | **Fulfilled** | The operation completed successfully. The Promise has resolved with a result value.            | The `.then()` method can be used to handle the result. |
     | **Rejected**  | The operation failed. The Promise has been rejected with a reason or error.                    | The `.catch()` method can be used to handle the error. |
 
-24. **What is the difference between `==` and `===`?**
+23. **What is the difference between `==` and `===`?**
 
     | Feature             | `==` (Equality)                                                                   | `===` (Strict Equality)                                                             |
     | ------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -222,7 +231,7 @@
     console.log(null === undefined); // false, different types (null and undefined)
     ```
 
-25. **What are template literals?**
+24. **What are template literals?**
 
     Template literals are string literals allowing embedded expressions, enclosed by backticks (`` ` ``).
 
@@ -231,7 +240,7 @@
     let message = `Hello, ${name}!`;
     ```
 
-26. **What are default parameters in JavaScript functions?**
+25. **What are default parameters in JavaScript functions?**
 
     Default parameters allow named parameters to be initialized with default values if no value or `undefined` is passed.
 
@@ -241,7 +250,7 @@
     }
     ```
 
-27. **What is destructuring assignment?**
+26. **What is destructuring assignment?**
 
     Destructuring assignment is a syntax that allows extracting values from arrays or objects into distinct variables.
 
@@ -250,7 +259,7 @@
     let { x, y } = { x: 10, y: 20 };
     ```
 
-28. **What are rest parameters?**
+27. **What are rest parameters?**
 
     Rest parameters allow a function to accept an indefinite number of arguments as an array.
 
@@ -260,7 +269,7 @@
     }
     ```
 
-29. **What is the `map` method in JavaScript?**
+28. **What is the `map` method in JavaScript?**
 
     The `map` method in JavaScript is used to create a new array by applying a function to each element of an existing array. It doesn't modify the original array but instead returns a new array with the results of the function applied to each element.
 
@@ -289,7 +298,7 @@
     console.log(names); // ['Alice', 'Bob', 'Charlie']
     ```
 
-30. **What is the `filter` method in JavaScript?**
+29. **What is the `filter` method in JavaScript?**
 
     The `filter` method in JavaScript is used to create a new array containing all elements that pass a test implemented by a provided function. It allows you to filter out elements from an array based on certain criteria without modifying the original array.
 
@@ -325,7 +334,7 @@
     // [{ name: 'Bob', age: 25 }, { name: 'Charlie', age: 30 }]
     ```
 
-31. **What is the `reduce` method in JavaScript?**
+30. **What is the `reduce` method in JavaScript?**
 
     The `reduce` method in JavaScript is used to apply a function against an accumulator and each element in an array (from left to right) to reduce it to a single value. It’s often used to perform operations like summing numbers, concatenating strings, or accumulating results based on array elements.
 
@@ -339,7 +348,7 @@
     console.log(sum); // Output: 15
     ```
 
-32. **What is a closure in JavaScript?**
+31. **What is a closure in JavaScript?**
 
     A closure is a function that retains access to its outer scope variables even after the outer function has finished executing.
 
@@ -355,7 +364,7 @@
     myClosure("innerValue");
     ```
 
-33. **What is the difference between `call` and `apply`?**
+32. **What is the difference between `call` and `apply`?**
 
     Both `call` and `apply` are used to invoke functions with a specified `this` value, but `call` takes arguments separately, while `apply` takes arguments as an array.
 
@@ -385,7 +394,7 @@
     greet.apply(person, ["Hi", "."]); // Output: Hi, Bob.
     ```
 
-34. **What is the `try...catch` statement in JavaScript?**
+33. **What is the `try...catch` statement in JavaScript?**
 
     The `try...catch` statement allows you to handle exceptions by running code in the `try` block and catching errors in the `catch` block.
 
@@ -396,7 +405,7 @@
         // handle the error
     ```
 
-35. **What is the `finally` block in JavaScript?**
+34. **What is the `finally` block in JavaScript?**
 
     The `finally` block contains code that will run regardless of whether an error was thrown or not.
 
@@ -410,14 +419,14 @@
     }
     ```
 
-36. **How do you throw an error in JavaScript?**
+35. **How do you throw an error in JavaScript?**
 
     - **Answer:**
       ```javascript
       throw new Error("Something went wrong");
       ```
 
-37. **What is a custom error?**
+36. **What is a custom error?**
     - **Answer:** A custom error is an error object that you create to provide specific error messages or codes for different error conditions.
       ```javascript
       class CustomError extends Error {
