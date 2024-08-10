@@ -97,18 +97,11 @@
     - Using Object.create()
     - Using Object.fromEntries()
 
-11. **How do you access array elements?**
+11. **What is the `this` keyword in JavaScript?**
 
-    - **Answer:**
-      ```javascript
-      arr[0]; // accesses the first element
-      ```
+    `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
 
-12. **What is the `this` keyword in JavaScript?**
-
-    - **Answer:** `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
-
-13. **What is the `this` keyword in traditional and arrow function?**
+12. **What is the `this` keyword in traditional and arrow function?**
 
     | **Aspect**               | **Traditional Functions**                                                                                       | **Arrow Functions**                                                                       |
     | ------------------------ | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
@@ -119,9 +112,17 @@
     | **Constructor Calls**    | `this` refers to the newly created object.                                                                      | Not applicable, as arrow functions cannot be used as constructors.                        |
     | **Usage with Callbacks** | Can lead to issues with `this` binding inside callbacks or nested functions.                                    | Preserves the `this` value of the enclosing context, making it useful for callbacks.      |
 
-14. **What is the DOM?**
+13. **What is the DOM?**
 
     The DOM (Document Object Model) is a programming interface for HTML and XML documents, representing the page so that programs can change the document structure, style, and content.
+
+14. **What are phases of DOM event handling?**
+
+    | **Phase**           | **Description**                                                                               | **Event Triggering**                                                         |
+    | ------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+    | **Capturing Phase** | The event starts from the outermost element and propagates inward towards the target element. | The event is captured by the outermost ancestor elements first.              |
+    | **Target Phase**    | The event reaches the target element, where the actual event handling occurs.                 | The event is handled by the target element itself.                           |
+    | **Bubbling Phase**  | The event bubbles up from the target element back up to the outer elements.                   | The event is processed by ancestor elements from the target element outward. |
 
 15. **How do you select elements in JavaScript?**
 
@@ -191,7 +192,7 @@
     });
     ```
 
-23. **What are the states of a Promise? **
+23. **What are the states of a Promise?**
 
     | State         | Description                                                                                    | Actions                                                |
     | ------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
