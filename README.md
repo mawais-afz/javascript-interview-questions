@@ -24,7 +24,19 @@
 
    The main data types in JavaScript are: `Number`, `Bigint`, `String`, `Boolean`, `Object`, `Undefined`, `Null`, and `Symbol`
 
-4. **What is hoisting?**
+4. **What are the differences between primitives and non-primitives?**
+
+   | Feature           | Primitives                                                             | Non-Primitives                             |
+   | ----------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
+   | Definition        | Basic data types that are immutable                                    | Complex data types that can be modified    |
+   | Examples          | `Number`, `String`, `Boolean`, `Null`, `Undefined`, `Symbol`, `BigInt` | `Object`, `Array`, `Function`              |
+   | Memory Allocation | Stored directly in the stack                                           | Stored as references in the heap           |
+   | Mutability        | Immutable (cannot be changed)                                          | Mutable (can be changed)                   |
+   | Comparison        | Compared by value                                                      | Compared by reference                      |
+   | Performance       | Generally faster                                                       | Generally slower due to reference handling |
+   | Type Checking     | Type is determined at compile time                                     | Type can change at runtime                 |
+
+5. **What is hoisting?**
 
    Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compile phase. This means that you can use variables and functions before they are declared in the code.
 
@@ -68,11 +80,11 @@
       };
       ```
 
-5. **What is a variable in JavaScript?**
+6. **What is a variable in JavaScript?**
 
    A variable is a container for storing data values. Variables are declared using the `var`, `let`, or `const` keywords.
 
-6. **What is the difference between `var`, `let`, and `const`?**
+7. **What is the difference between `var`, `let`, and `const`?**
 
    | Aspect         | `var`                                             | `let`                                            | `const`                                          |
    | -------------- | ------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------ |
@@ -84,7 +96,7 @@
    | Usage          | Older JavaScript, can lead to unexpected behavior | Modern JavaScript, better scoping control        | Constants and immutable references               |
    | Example        | `var x = 1; var x = 2; // Allowed`                | `let y = 1; let y = 2; // SyntaxError`           | `const z = 1; z = 2; // TypeError`               |
 
-7. **What is the difference between `null` and `undefined`?**
+8. **What is the difference between `null` and `undefined`?**
 
    Both of these values are considered "nullish" because they signify a lack of value, and they are often used in conditional checks to determine if a variable has a meaningful value or not.
 
@@ -101,7 +113,7 @@
    | JSON serialization       | Serialized as "null"                                       | Omitted from JSON output                                   |
    | Example                  | `let obj = null;`                                          | `let var;` or `let obj = undefined;`                       |
 
-8. **What is a function in JavaScript? How do you define a function in JavaScript?**
+9. **What is a function in JavaScript? How do you define a function in JavaScript?**
 
    A function is a block of code designed to perform a particular task, and it is executed when something invokes it.
 
@@ -111,17 +123,17 @@
    }
    ```
 
-9. **What is a function expression?**
+10. **What is a function expression?**
 
-   A function expression is a function defined inside an expression instead of a declaration.
+    A function expression is a function defined inside an expression instead of a declaration.
 
-   ```javascript
-   let myFunction = function () {
-     // code to be executed
-   };
-   ```
+    ```javascript
+    let myFunction = function () {
+      // code to be executed
+    };
+    ```
 
-10. **What are arrow functions?**
+11. **What are arrow functions?**
 
     Arrow functions are a concise syntax for writing function expressions using the `=>` syntax.
 
@@ -131,7 +143,17 @@
     };
     ```
 
-11. **What is the difference between function declarations and function expressions?**
+12. **What are the differences between pure and impure functions?**
+
+    | Aspect         | Pure Functions                                                                                      | Impure Functions                                                                                                 |
+    | -------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+    | Definition     | Functions that always produce the same output for the same input and do not cause any side effects. | Functions that may produce different outputs for the same input or cause side effects.                           |
+    | Side Effects   | No side effects; they do not modify any external state.                                             | May have side effects; they can modify external state or interact with the outside world (e.g., I/O operations). |
+    | Predictability | Highly predictable; easier to test and debug.                                                       | Less predictable; harder to test and debug due to external dependencies.                                         |
+    | Usage          | Ideal for functional programming and scenarios requiring reliability.                               | Common in scenarios where interaction with external systems is necessary.                                        |
+    | Example        | `function add(a, b) { return a + b; }`                                                              | `function fetchData() { return fetch('api/data'); }`                                                             |
+
+13. **What is the difference between function declarations and function expressions?**
 
     | Aspect             | Function Declarations                         | Function Expressions                                   |
     | ------------------ | --------------------------------------------- | ------------------------------------------------------ |
@@ -146,7 +168,29 @@
     | Binding            | Bound to function name in its scope           | Bound to variable or property it's assigned to         |
     | In Objects/Classes | Often used directly as methods                | Commonly used as methods, especially in ES6 classes    |
 
-12. **What is a JavaScript object? What are the possible ways to create objects in JavaScript?**
+14. **What does the new keyword do?**
+
+    The `new` keyword is used to create an instance of an object that is defined by a constructor function. When `new` is used, it performs the following actions:
+
+    1. It creates a new empty object.
+    2. It sets the prototype of the new object to the constructor function's prototype.
+    3. It binds `this` to the new object within the constructor function.
+    4. It returns the new object unless the constructor function explicitly returns a different object.
+
+    **Example:**
+
+    ```javascript
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    const person1 = new Person("John", 30);
+    console.log(person1.name); // Output: John
+    console.log(person1.age); // Output: 30
+    ```
+
+15. **What is a JavaScript object? What are the possible ways to create objects in JavaScript?**
 
     A JavaScript object is a collection of key-value pairs where the keys are strings (or Symbols) and the values can be of any data type. Objects are used to store and organize data and functions.
 
@@ -215,11 +259,11 @@
        const person = new Person("John", 30);
        ```
 
-13. **What is the `this` keyword in JavaScript?**
+16. **What is the `this` keyword in JavaScript?**
 
     `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
 
-14. **What is the `this` keyword in traditional and arrow function?**
+17. **What is the `this` keyword in traditional and arrow function?**
 
     | **Aspect**             | **Traditional Functions**                                                                          | **Arrow Functions**                                                                     |
     | ---------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -233,11 +277,11 @@
     | **Usage in Objects**   | Commonly used for object methods when `this` should refer to the object.                           | Useful for callbacks and functions that don't need their own `this` context.            |
     | **`arguments` Object** | Has access to the `arguments` object.                                                              | Does not have its own `arguments` object; inherits from the enclosing scope if needed.  |
 
-15. **What is the DOM?**
+18. **What is the DOM?**
 
     The DOM (Document Object Model) is a programming interface for HTML and XML documents, representing the page so that programs can change the document structure, style, and content.
 
-16. **What are phases of DOM event handling?**
+19. **What are phases of DOM event handling?**
 
     | **Phase**           | **Description**                                                                               | **Event Triggering**                                                         |
     | ------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -245,7 +289,7 @@
     | **Target Phase**    | The event reaches the target element, where the actual event handling occurs.                 | The event is handled by the target element itself.                           |
     | **Bubbling Phase**  | The event bubbles up from the target element back up to the outer elements.                   | The event is processed by ancestor elements from the target element outward. |
 
-17. **How do you select elements in JavaScript?**
+20. **How do you select elements in JavaScript?**
 
 - **By ID:**
 
@@ -653,7 +697,61 @@
     console.log(counter.decrement()); // Output: 1
     ```
 
-33. **What is the difference between `call`, `apply`, and `bind`?**
+33. **How many ways can a function be invoked?**
+
+    A function in JavaScript can be invoked in several ways:
+
+    1. **Function Invocation**: The simplest way to invoke a function is by calling it directly.
+
+       ```javascript
+       function sayHello() {
+         console.log("Hello!");
+       }
+       sayHello(); // Output: Hello!
+       ```
+
+    2. **Method Invocation**: When a function is called as a method of an object, the `this` context refers to the object.
+
+       ```javascript
+       const obj = {
+         greet() {
+           console.log("Hello from object!");
+         },
+       };
+       obj.greet(); // Output: Hello from object!
+       ```
+
+    3. **Constructor Invocation**: Functions can be invoked as constructors using the `new` keyword, which creates a new instance of an object.
+
+       ```javascript
+       function Person(name) {
+         this.name = name;
+       }
+       const person1 = new Person("Alice");
+       console.log(person1.name); // Output: Alice
+       ```
+
+    4. **Indirect Invocation**: Functions can be invoked using `call`, `apply`, or `bind` to set the `this` context explicitly.
+
+       ```javascript
+       function greet() {
+         console.log(`Hello, ${this.name}!`);
+       }
+       const user = { name: "Bob" };
+       greet.call(user); // Output: Hello, Bob!
+       ```
+
+    5. **Arrow Function Invocation**: Arrow functions can be invoked like regular functions, but they do not have their own `this` context.
+       ```javascript
+       const greet = () => {
+         console.log("Hello from arrow function!");
+       };
+       greet(); // Output: Hello from arrow function!
+       ```
+
+    Each of these invocation methods has its own behavior and context for the `this` keyword.
+
+34. **What is the difference between `call`, `apply`, and `bind`?**
 
     `call`, `apply`, and `bind` are methods used to manipulate the `this` context of a function in JavaScript. Here's how they differ:
 
@@ -710,7 +808,7 @@
     - `call` takes arguments separately, `apply` takes them as an array.
     - `bind` allows for partial application of arguments.
 
-34. **What is the `try...catch` statement in JavaScript?**
+35. **What is the `try...catch` statement in JavaScript?**
 
     The `try...catch` statement allows you to handle exceptions by running code in the `try` block and catching errors in the `catch` block.
 
@@ -722,7 +820,7 @@
     }
     ```
 
-35. **What is the `finally` block in JavaScript?**
+36. **What is the `finally` block in JavaScript?**
 
     The `finally` block contains code that will run regardless of whether an error was thrown or not.
 
@@ -736,7 +834,7 @@
     }
     ```
 
-36. **How do you throw an error in JavaScript?**
+37. **How do you throw an error in JavaScript?**
 
     To throw an error in JavaScript, you use the `throw` statement followed by an `Error` object or any other value. Here are a few examples:
 
@@ -760,7 +858,7 @@
 
     It's generally recommended to throw `Error` objects or instances of `Error` subclasses, as they provide a stack trace and are more informative for debugging.
 
-37. **What is a custom error?**
+38. **What is a custom error?**
 
     A custom error is a user-defined error type that extends the built-in Error class or one of its subclasses. It allows developers to create specific error types for different scenarios in their application, providing more detailed and contextual error information.
 
@@ -804,7 +902,7 @@
     3. Better error reporting and logging
     4. Increased code readability and maintainability
 
-38. **What is `typeof` operator in JavaScript?**
+39. **What is `typeof` operator in JavaScript?**
 
     The `typeof` operator in JavaScript is a unary operator that returns a string indicating the type of the unevaluated operand. It's used to determine the type of a value or expression.
 
@@ -834,7 +932,7 @@
 
     For more precise type checking, especially with objects, you might need to use other methods like `instanceof` or check for specific properties.
 
-39. **What is `instanceof` operator in JavaScript?**
+40. **What is `instanceof` operator in JavaScript?**
 
     The `instanceof` operator tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
 
@@ -858,7 +956,7 @@
     console.log(myDog instanceof Array); // false
     ```
 
-40. **What is a callback function?**
+41. **What is a callback function?**
 
     A callback function is a function passed as an argument to another function, which is then invoked inside that function, often after some operation has been completed. Callbacks are commonly used in asynchronous operations, event handling, and to implement higher-order functions.
 
@@ -886,7 +984,7 @@
     fetchData(processData);
     ```
 
-41. **What is `NaN` in JavaScript?**
+42. **What is `NaN` in JavaScript?**
 
     `NaN` stands for "Not-a-Number" aand is a special value that indicates/representing an invalid or unrepresentable number.
 
@@ -913,7 +1011,7 @@
     console.log(parseInt("abc")); // NaN
     ```
 
-42. **What is `use strict`?**
+43. **What is `use strict`?**
 
     `"use strict"` is a directive that enables strict mode, which makes error-checking more robust and prevents the use of certain JavaScript features that are considered problematic.
 
@@ -921,7 +1019,7 @@
     "use strict";
     ```
 
-43. **What is the difference between `slice` and `splice`?**
+44. **What is the difference between `slice` and `splice`?**
 
     `slice` creates a new array containing a portion of the original array without modifying it, while `splice` directly alters the original array by removing, replacing, or adding elements.
 
@@ -941,53 +1039,57 @@
     console.log(vegetables); // Output: ['Carrot', 'Tomato', 'Cucumber']
     ```
 
-44. **What is `JSON`?**
+45. **What is `JSON`? How do you convert a JavaScript object to a JSON string?**
 
-    - **Answer:** JSON (JavaScript Object Notation) is a lightweight data-interchange format that's easy for humans to read and write and easy for machines to parse and generate.
-      ```javascript
-      let jsonString = '{"name": "John", "age": 30}';
-      let jsonObject = JSON.parse(jsonString);
-      ```
+    JSON (JavaScript Object Notation) is a lightweight data-interchange format that's easy for humans to read and write and easy for machines to parse and generate.
 
-45. **How do you convert a JavaScript object to a JSON string?**
+    ```javascript
+    let jsonString = '{"name": "John", "age": 30}';
+    let jsonObject = JSON.parse(jsonString);
+    ```
 
-    - **Answer:**
-      ```javascript
-      let jsonString = JSON.stringify({ name: "John", age: 30 });
-      ```
+    ```javascript
+    let jsonString = JSON.stringify({ name: "John", age: 30 });
+    ```
 
 46. **What is the `fetch` API?**
 
-    - **Answer:** The `fetch` API is a modern interface for making network requests similar to XMLHttpRequest, but with a more powerful and flexible feature set.
-      ```javascript
-      fetch("https://api.example.com/data")
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-      ```
+    The `fetch` API is a modern interface for making network requests similar to XMLHttpRequest, but with a more powerful and flexible feature set.
+
+    ```javascript
+    fetch("https://api.example.com/data")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+    ```
 
 47. **What are modules in JavaScript?**
 
-    - **Answer:** Modules are reusable pieces of code that can be imported and exported, allowing for better organization and separation of concerns.
+    Modules are reusable pieces of code that can be imported and exported, allowing for better organization and separation of concerns.
 
-      ```javascript
-      // Exporting a module
-      export const myFunction = () => {
-        // code
-      };
+    ```javascript
+    // Exporting a module
+    export const myFunction = () => {
+      // code
+    };
 
-      // Importing a module
-      import { myFunction } from "./myModule.js";
-      ```
+    // Importing a module
+    import { myFunction } from "./myModule.js";
+    ```
 
 48. **What is the difference between `localStorage` and `sessionStorage`?**
 
-    - **Answer:** `localStorage` stores data with no expiration date, while `sessionStorage` stores data for the duration of the page session (data is lost when the page is closed).
+| Feature       | `localStorage`                                                  | `sessionStorage`                                                        |
+| ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Lifetime      | Data persists even after the browser is closed                  | Data is cleared when the page session ends (browser/tab is closed)      |
+| Scope         | Accessible across all tabs and windows of the same origin       | Accessible only within the same tab or window                           |
+| Storage Limit | Typically around 5-10MB per origin                              | Typically around 5-10MB per origin                                      |
+| Use Case      | Suitable for storing data that needs to persist across sessions | Suitable for temporary data that is only needed during a single session |
 
-49. **What is a Symbol in JavaScript?**
+48. **What is a Symbol in JavaScript?**
 
-    - **Answer:** A Symbol is a unique and immutable primitive value and may be used as the key of an object property.
+    A Symbol is a unique and immutable primitive value and may be used as the key of an object property.
 
-50. **What is the `async`/`await` syntax?**
+49. **What is the `async`/`await` syntax?**
 
     - **Answer:** `async`/`await` is syntax for writing asynchronous code in a more readable and synchronous-looking manner.
       ```javascript
@@ -998,7 +1100,7 @@
       }
       ```
 
-51. **What is a generator function?**
+50. **What is a generator function?**
 
     - **Answer:** A generator function is a special type of function that can pause execution and return multiple values using the `yield` keyword.
       ```javascript
@@ -1009,7 +1111,7 @@
       }
       ```
 
-52. **What is a Proxy in JavaScript?**
+51. **What is a Proxy in JavaScript?**
 
     - **Answer:** A Proxy object allows you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
       ```javascript
@@ -1021,7 +1123,7 @@
       let proxy = new Proxy({}, handler);
       ```
 
-53. **What is a `Set` in JavaScript?**
+52. **What is a `Set` in JavaScript?**
     - **Answer:** A `Set` is a collection of unique values, meaning a value in a `Set` can only occur once.
       ```javascript
       let mySet = new Set([1, 2, 3, 4, 4]);
@@ -1087,7 +1189,7 @@
       })();
       ```
 
-69. **What is a higher-order function?**
+69. **What is a higher-order function? What are the benefits higher order functions?**
 
     A higher-order function is a function that either takes one or more functions as arguments, returns a function, or both.
 
@@ -1101,6 +1203,13 @@
     const sayHello = greet("Hello");
     console.log(sayHello("Alice")); // Hello, Alice!
     ```
+
+    The main benefits of higher order functions are:
+
+    - Abstration
+    - Reusability
+    - Immutability
+    - Modularity
 
 70. **What is function currying?**
 
@@ -1345,9 +1454,7 @@
        console.log(newString); // Output: "Apple Banana Cherry"
        ```
 
-### Best Practices
-
-86. **What are some best practices for writing JavaScript code?**
+84. **What are some best practices for writing JavaScript code?**
 
 - **Answer:** Use `let` and `const` instead of `var`, write descriptive variable names, keep functions small and focused, use comments judiciously, and follow consistent coding conventions.
 
@@ -1410,9 +1517,3 @@
 100.  **What is a mock object in testing?**
 
 - **Answer:** A mock object simulates the behavior of real objects in controlled ways to test parts of the application without relying on real data or external systems.
-
-These questions cover a wide range of fundamental JavaScript concepts and should help prepare you for basic JavaScript interviews.
-
-```
-
-```
