@@ -1,10 +1,113 @@
-# Here are 100 basic JavaScript interview questions along with their answers
+# JavaScript Interview Questions And Answers
+
+## JS Fundamentals
 
 1. **What is JavaScript? Where is it mostly used?**
 
    JavaScript is a high-level, interpreted programming language that is primarily used to create interactive and dynamic content on websites. It allows developers to implement complex features on web pages, such as animated graphics, clickable buttons, and real-time updates.
 
-2. **What is an execution context in JavaScript?**
+2. **What are client side and server side?**
+
+   - **Client Side**: Refers to operations that are performed on the user's device (the client), typically within a web browser. This includes rendering the user interface, handling user interactions, and making requests to the server. Technologies commonly used for client-side development include HTML, CSS, JavaScript, ReactJS and Angular.
+
+   - **Server Side**: Refers to operations that are performed on the server, which is a remote machine that hosts the application and its data. The server processes requests from the client, performs necessary computations, accesses databases, and sends back the appropriate responses. Server-side technologies include Node.js, Python, Java, Ruby, PHP, and databases like MySQL and MongoDB.
+
+3. **What are variables? What is the difference between `var`, `let`, and `const?`**
+
+   A variable is a container for storing data values. Variables are declared using the `var`, `let`, or `const` keywords.
+
+   | Aspect         | `var`                                             | `let`                                            | `const`                                          |
+   | -------------- | ------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------ |
+   | Scope          | Function or global scope                          | Block scope                                      | Block scope                                      |
+   | Hoisting       | Hoisted and initialized with `undefined`          | Hoisted but not initialized (Temporal Dead Zone) | Hoisted but not initialized (Temporal Dead Zone) |
+   | Re-declaration | Allowed in same scope                             | Not allowed in same block                        | Not allowed in same block                        |
+   | Re-assignment  | Allowed                                           | Allowed                                          | Not allowed                                      |
+   | Initialization | Optional                                          | Optional                                         | Required at declaration                          |
+   | Usage          | Older JavaScript, can lead to unexpected behavior | Modern JavaScript, better scoping control        | Constants and immutable references               |
+   | Example        | `var x = 1; var x = 2; // Allowed`                | `let y = 1; let y = 2; // SyntaxError`           | `const z = 1; z = 2; // TypeError`               |
+
+4. **What are some important string operations in JS?**
+
+   Some important string operations in JavaScript include:
+
+   - **Length**: The `length` property returns the number of characters in a string.
+
+     ```javascript
+     let str = "Hello, World!";
+     console.log(str.length); // Output: 13
+     ```
+
+   - **Substring**: The `substring()` method extracts characters from a string between two specified indices.
+
+     ```javascript
+     let str = "Hello, World!";
+     console.log(str.substring(0, 5)); // Output: Hello
+     ```
+
+   - **IndexOf**: The `indexOf()` method returns the index of the first occurrence of a specified value in a string, or -1 if not found.
+
+     ```javascript
+     let str = "Hello, World!";
+     console.log(str.indexOf("World")); // Output: 7
+     ```
+
+   - **Slice**: The `slice()` method returns a portion of a string based on specified start and end indices.
+
+     ```javascript
+     let str = "Hello, World!";
+     console.log(str.slice(7, 12)); // Output: World
+     ```
+
+   - **Replace**: The `replace()` method replaces a specified value with another value in a string.
+
+     ```javascript
+     let str = "Hello, World!";
+     console.log(str.replace("World", "JavaScript")); // Output: Hello, JavaScript!
+     ```
+
+   - **ToUpperCase / ToLowerCase**: These methods convert a string to uppercase or lowercase, respectively.
+
+     ```javascript
+     let str = "Hello, World!";
+     console.log(str.toUpperCase()); // Output: HELLO, WORLD!
+     console.log(str.toLowerCase()); // Output: hello, world!
+     ```
+
+   - **Trim**: The `trim()` method removes whitespace from both ends of a string.
+
+     ```javascript
+     let str = "   Hello, World!   ";
+     console.log(str.trim()); // Output: Hello, World!
+     ```
+
+   - **Split**: The `split()` method splits a string into an array of substrings based on a specified delimiter.
+     ```javascript
+     let str = "Hello, World!";
+     console.log(str.split(", ")); // Output: ["Hello", "World!"]
+     ```
+
+5. **What is DOM?**
+   The Document Object Model (DOM) is a programming interface for web documents. It represents the structure of a document as a tree of objects, allowing programs to manipulate the content, structure, and style of a document dynamically. The DOM provides a way for scripts to access and update the content, structure, and style of a document.
+
+   **What is the difference between HTML and DOM?**
+
+   | **Aspect**         | **HTML**                                                     | **DOM**                                                                                   |
+   | ------------------ | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+   | **Definition**     | A markup language used to create the structure of web pages. | A programming interface that represents the structure of a document as a tree of objects. |
+   | **Nature**         | Static; defines the content and structure of a web page.     | Dynamic; allows for manipulation of the document structure and content.                   |
+   | **Representation** | Written in HTML tags (e.g., `<div>`, `<p>`, `<a>`).          | Represented as a tree of nodes (elements, attributes, text).                              |
+   | **Interaction**    | Cannot be directly manipulated by scripts.                   | Can be manipulated using JavaScript or other programming languages.                       |
+   | **Purpose**        | To define the layout and content of a web page.              | To provide a structured representation of the document for programming.                   |
+
+6. **What are phases of DOM event handling?**
+
+   | **Phase**           | **Description**                                                                               | **Event Triggering**                                                         |
+   | ------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+   | **Capturing Phase** | The event starts from the outermost element and propagates inward towards the target element. | The event is captured by the outermost ancestor elements first.              |
+   | **Target Phase**    | The event reaches the target element, where the actual event handling occurs.                 | The event is handled by the target element itself.                           |
+   | **Bubbling Phase**  | The event bubbles up from the target element back up to the outer elements.                   | The event is processed by ancestor elements from the target element outward. |
+
+7. **What is an execution context in JavaScript?**
 
    An execution context is an abstract concept that holds information about the environment within which the current code is being executed. It consists of the following components:
 
@@ -20,11 +123,11 @@
 
    Understanding execution contexts is crucial for grasping how variable scope and the `this` keyword work in JavaScript.
 
-3. **What are the data types in JavaScript?**
+8. **What are the data types in JavaScript?**
 
    The main data types in JavaScript are: `Number`, `Bigint`, `String`, `Boolean`, `Object`, `Undefined`, `Null`, and `Symbol`
 
-4. **What are the differences between primitives and non-primitives?**
+9. **What are the differences between primitives and non-primitives?**
 
    | Feature           | Primitives                                                             | Non-Primitives                             |
    | ----------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
@@ -36,94 +139,78 @@
    | Performance       | Generally faster                                                       | Generally slower due to reference handling |
    | Type Checking     | Type is determined at compile time                                     | Type can change at runtime                 |
 
-5. **What is hoisting?**
+10. **What is hoisting?**
 
-   Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compile phase. This means that you can use variables and functions before they are declared in the code.
+    Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compile phase. This means that you can use variables and functions before they are declared in the code.
 
-   #### How Hoisting Works
+    #### How Hoisting Works
 
-   1. **Variable Hoisting**:
+    1. **Variable Hoisting**:
 
-      Variables declared with `var` are hoisted to the top of their function or global scope, but their initialization remains in place. This means that the variable is accessible before its declaration, but its value will be `undefined` until the line where it is initialized is executed.
+       Variables declared with `var` are hoisted to the top of their function or global scope, but their initialization remains in place. This means that the variable is accessible before its declaration, but its value will be `undefined` until the line where it is initialized is executed.
 
-      ```javascript
-      console.log(myVar); // Output: undefined
-      var myVar = 5;
-      console.log(myVar); // Output: 5
-      ```
+       ```javascript
+       console.log(myVar); // Output: undefined
+       var myVar = 5;
+       console.log(myVar); // Output: 5
+       ```
 
-      Variables declared with `let` and `const` are also hoisted, but they are not initialized. Accessing them before their declaration results in a `ReferenceError` due to the "temporal dead zone."
+       Variables declared with `let` and `const` are also hoisted, but they are not initialized. Accessing them before their declaration results in a `ReferenceError` due to the "temporal dead zone."
 
-      ```javascript
-      console.log(myLet); // ReferenceError: Cannot access 'myLet' before initialization
-      let myLet = 10;
-      ```
+       ```javascript
+       console.log(myLet); // ReferenceError: Cannot access 'myLet' before initialization
+       let myLet = 10;
+       ```
 
-   2. **Function Hoisting**:
+    2. **Function Hoisting**:
 
-      Function declarations are fully hoisted, meaning you can call a function before it is defined in the code.
+       Function declarations are fully hoisted, meaning you can call a function before it is defined in the code.
 
-      ```javascript
-      myFunction(); // Output: "Hello, World!"
+       ```javascript
+       myFunction(); // Output: "Hello, World!"
 
-      function myFunction() {
-        console.log("Hello, World!");
-      }
-      ```
+       function myFunction() {
+         console.log("Hello, World!");
+       }
+       ```
 
-      Function expressions, however, are not hoisted in the same way. If you try to call a function expression before it is defined, you will get a `TypeError`.
+       Function expressions, however, are not hoisted in the same way. If you try to call a function expression before it is defined, you will get a `TypeError`.
 
-      ```javascript
-      myFunc(); // TypeError: myFunc is not a function
-      var myFunc = function () {
-        console.log("Hello, World!");
-      };
-      ```
+       ```javascript
+       myFunc(); // TypeError: myFunc is not a function
+       var myFunc = function () {
+         console.log("Hello, World!");
+       };
+       ```
 
-6. **What is a variable in JavaScript?**
+11. **What is the difference between `null` and `undefined`, or `undeclared`?**
 
-   A variable is a container for storing data values. Variables are declared using the `var`, `let`, or `const` keywords.
+    These three terms represent different states of a variable in JavaScript, and understanding their differences is crucial for effective coding.
 
-7. **What is the difference between `var`, `let`, and `const`?**
+    | Aspect                   | `null`                                                     | `undefined`                                                | `Undeclared`                                                  |
+    | ------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------- |
+    | Type                     | `object`                                                   | `undefined`                                                | Not defined at all                                            |
+    | Meaning                  | Intentional absence of any object value                    | Variable declared but not initialized                      | Variable that has not been declared in any scope              |
+    | Assignment               | Explicitly assigned                                        | Default value for uninitialized variables                  | Cannot be assigned a value since it does not exist            |
+    | Usage                    | Explicitly signify emptiness or reset a variable           | Indicates lack of initialization                           | Indicates a variable that is not yet defined                  |
+    | In comparisons           | `null == undefined` is true, `null === undefined` is false | `undefined == null` is true, `undefined === null` is false | Cannot be compared as it does not exist                       |
+    | In arithmetic operations | Converted to 0                                             | Converted to NaN                                           | ReferenceError if accessed                                    |
+    | Function return          | Explicitly returned to indicate no object                  | Default return value if no return statement                | Cannot be returned as it does not exist                       |
+    | typeof                   | Returns "object"                                           | Returns "undefined"                                        | ReferenceError if accessed                                    |
+    | JSON serialization       | Serialized as "null"                                       | Omitted from JSON output                                   | Not applicable                                                |
+    | Example                  | `let obj = null;`                                          | `let var;` or `let obj = undefined;`                       | `console.log(myVar); // ReferenceError: myVar is not defined` |
 
-   | Aspect         | `var`                                             | `let`                                            | `const`                                          |
-   | -------------- | ------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------ |
-   | Scope          | Function or global scope                          | Block scope                                      | Block scope                                      |
-   | Hoisting       | Hoisted and initialized with `undefined`          | Hoisted but not initialized (Temporal Dead Zone) | Hoisted but not initialized (Temporal Dead Zone) |
-   | Re-declaration | Allowed in same scope                             | Not allowed in same block                        | Not allowed in same block                        |
-   | Re-assignment  | Allowed                                           | Allowed                                          | Not allowed                                      |
-   | Initialization | Optional                                          | Optional                                         | Required at declaration                          |
-   | Usage          | Older JavaScript, can lead to unexpected behavior | Modern JavaScript, better scoping control        | Constants and immutable references               |
-   | Example        | `var x = 1; var x = 2; // Allowed`                | `let y = 1; let y = 2; // SyntaxError`           | `const z = 1; z = 2; // TypeError`               |
+12. **What is a function in JavaScript? How do you define a function in JavaScript?**
 
-8. **What is the difference between `null` and `undefined`?**
+    A function is a block of code designed to perform a particular task, and it is executed when something invokes it.
 
-   Both of these values are considered "nullish" because they signify a lack of value, and they are often used in conditional checks to determine if a variable has a meaningful value or not.
+    ```javascript
+    function myFunction() {
+      // code to be executed
+    }
+    ```
 
-   | Aspect                   | `null`                                                     | `undefined`                                                |
-   | ------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------- |
-   | Type                     | `object`                                                   | `undefined`                                                |
-   | Meaning                  | Intentional absence of any object value                    | Variable declared but not initialized                      |
-   | Assignment               | Explicitly assigned                                        | Default value for uninitialized variables                  |
-   | Usage                    | Explicitly signify emptiness or reset a variable           | Indicates lack of initialization                           |
-   | In comparisons           | `null == undefined` is true, `null === undefined` is false | `undefined == null` is true, `undefined === null` is false |
-   | In arithmetic operations | Converted to 0                                             | Converted to NaN                                           |
-   | Function return          | Explicitly returned to indicate no object                  | Default return value if no return statement                |
-   | typeof                   | Returns "object"                                           | Returns "undefined"                                        |
-   | JSON serialization       | Serialized as "null"                                       | Omitted from JSON output                                   |
-   | Example                  | `let obj = null;`                                          | `let var;` or `let obj = undefined;`                       |
-
-9. **What is a function in JavaScript? How do you define a function in JavaScript?**
-
-   A function is a block of code designed to perform a particular task, and it is executed when something invokes it.
-
-   ```javascript
-   function myFunction() {
-     // code to be executed
-   }
-   ```
-
-10. **What is a function expression?**
+13. **What is a function expression?**
 
     A function expression is a function defined inside an expression instead of a declaration.
 
@@ -133,17 +220,18 @@
     };
     ```
 
-11. **What are arrow functions?**
+14. **What are arrow functions? Can we use arguments object in arrow function?**
 
-    Arrow functions are a concise syntax for writing function expressions using the `=>` syntax.
+    Arrow functions are a concise syntax for writing function expressions using the `=>` syntax. Unlike regular functions, arrow functions do not have their own `this`, and they cannot use the `arguments` object. Instead, you can use rest parameters to achieve similar functionality.
 
     ```javascript
-    const myFunction = () => {
+    const myFunction = (...args) => {
       // code to be executed
+      console.log(args); // Accessing arguments using rest parameters
     };
     ```
 
-12. **What are the differences between pure and impure functions?**
+15. **What are the differences between pure and impure functions?**
 
     | Aspect         | Pure Functions                                                                                      | Impure Functions                                                                                                 |
     | -------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -153,7 +241,7 @@
     | Usage          | Ideal for functional programming and scenarios requiring reliability.                               | Common in scenarios where interaction with external systems is necessary.                                        |
     | Example        | `function add(a, b) { return a + b; }`                                                              | `function fetchData() { return fetch('api/data'); }`                                                             |
 
-13. **What is the difference between function declarations and function expressions?**
+16. **What is the difference between function declarations and function expressions?**
 
     | Aspect             | Function Declarations                         | Function Expressions                                   |
     | ------------------ | --------------------------------------------- | ------------------------------------------------------ |
@@ -168,7 +256,7 @@
     | Binding            | Bound to function name in its scope           | Bound to variable or property it's assigned to         |
     | In Objects/Classes | Often used directly as methods                | Commonly used as methods, especially in ES6 classes    |
 
-14. **What does the new keyword do?**
+17. **What does the new keyword do?**
 
     The `new` keyword is used to create an instance of an object that is defined by a constructor function. When `new` is used, it performs the following actions:
 
@@ -190,7 +278,7 @@
     console.log(person1.age); // Output: 30
     ```
 
-15. **What is a JavaScript object? What are the possible ways to create objects in JavaScript?**
+18. **What is a JavaScript object? What are the possible ways to create objects in JavaScript?**
 
     A JavaScript object is a collection of key-value pairs where the keys are strings (or Symbols) and the values can be of any data type. Objects are used to store and organize data and functions.
 
@@ -259,11 +347,11 @@
        const person = new Person("John", 30);
        ```
 
-16. **What is the `this` keyword in JavaScript?**
+19. **What is the `this` keyword in JavaScript?**
 
     `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
 
-17. **What is the `this` keyword in traditional and arrow function?**
+20. **What is the `this` keyword in traditional and arrow function?**
 
     | **Aspect**             | **Traditional Functions**                                                                          | **Arrow Functions**                                                                     |
     | ---------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -277,19 +365,7 @@
     | **Usage in Objects**   | Commonly used for object methods when `this` should refer to the object.                           | Useful for callbacks and functions that don't need their own `this` context.            |
     | **`arguments` Object** | Has access to the `arguments` object.                                                              | Does not have its own `arguments` object; inherits from the enclosing scope if needed.  |
 
-18. **What is the DOM?**
-
-    The DOM (Document Object Model) is a programming interface for HTML and XML documents, representing the page so that programs can change the document structure, style, and content.
-
-19. **What are phases of DOM event handling?**
-
-    | **Phase**           | **Description**                                                                               | **Event Triggering**                                                         |
-    | ------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-    | **Capturing Phase** | The event starts from the outermost element and propagates inward towards the target element. | The event is captured by the outermost ancestor elements first.              |
-    | **Target Phase**    | The event reaches the target element, where the actual event handling occurs.                 | The event is handled by the target element itself.                           |
-    | **Bubbling Phase**  | The event bubbles up from the target element back up to the outer elements.                   | The event is processed by ancestor elements from the target element outward. |
-
-20. **How do you select elements in JavaScript?**
+21. **How do you select elements in JavaScript?**
 
 - **By ID:**
 
