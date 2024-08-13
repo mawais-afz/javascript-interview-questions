@@ -883,39 +883,14 @@ There are several types of selectors in JavaScript:
     console.log(y); // Output: 20
     ```
 
-33. **What are rest parameters?**
+33. **What is the difference between Spread and Rest operator in JS?**
 
-    Rest parameters allow a function to accept an indefinite number of arguments as an array. They are denoted by three dots (...) followed by a parameter name.
-
-    Key points about rest parameters:
-
-    1. They collect all remaining arguments into an array.
-    2. They must be the last parameter in a function definition.
-    3. There can only be one rest parameter in a function.
-    4. They provide a cleaner alternative to using the `arguments` object.
-
-    ```javascript
-    function sum(...numbers: number[]): number {
-      return numbers.reduce((total, num) => total + num, 0);
-    }
-
-    console.log(sum(1, 2, 3)); // Output: 6
-    console.log(sum(4, 5, 6, 7)); // Output: 22
-    ```
-
-    Rest parameters can also be used with other parameters:
-
-    ```javascript
-    function greet(greeting: string, ...names: string[]): void {
-      names.forEach((name) => console.log(`${greeting}, ${name}!`));
-    }
-
-    greet("Hello", "Alice", "Bob", "Charlie");
-    // Output:
-    // Hello, Alice!
-    // Hello, Bob!
-    // Hello, Charlie!
-    ```
+    | Feature  | Spread Operator                                              | Rest Operator                                                                                           |
+    | -------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+    | Syntax   | Denoted by three dots (...) before the variable              | Denoted by three dots (...) after the parameter name                                                    |
+    | Purpose  | Expands an iterable (like an array) into individual elements | Collects multiple elements into a single array                                                          |
+    | Use Case | Used in function calls, array literals, and object literals  | Used in function parameters to accept variable numbers of arguments                                     |
+    | Example  | `const arr = [1, 2, 3]; const newArr = [...arr, 4, 5];`      | `function sum(...numbers: number[]): number { return numbers.reduce((total, num) => total + num, 0); }` |
 
 34. **What is the `map` method in JavaScript?**
 
@@ -1386,27 +1361,37 @@ There are several types of selectors in JavaScript:
     console.log(fruits); // Output: ["Apple", "Banana", "Cherry"]
     ```
 
-51. **What is the difference between `slice` and `splice`?**
+51. **What is the indexOf() method of an Array?**
 
-    `slice` creates a new array containing a portion of the original array without modifying it, while `splice` directly alters the original array by removing, replacing, or adding elements.
+    The `indexOf()` method returns the first index at which a given element can be found in the array, or -1 if it is not present. It performs a strict comparison (===) to find the element.
 
-    **Example of `slice`:**
-
-    ```javascript
-    const fruits = ["Apple", "Banana", "Cherry", "Date"];
-    const citrus = fruits.slice(1, 3); // ['Banana', 'Cherry']
-    console.log(citrus); // Output: ['Banana', 'Cherry']
-    ```
-
-    **Example of `splice`:**
+    **Example:**
 
     ```javascript
-    const vegetables = ["Carrot", "Potato", "Cucumber"];
-    vegetables.splice(1, 1, "Tomato"); // Removes 'Potato' and adds 'Tomato'
-    console.log(vegetables); // Output: ['Carrot', 'Tomato', 'Cucumber']
+    const beasts = ["ant", "bison", "camel", "duck", "bison"];
+
+    console.log(beasts.indexOf("bison"));
+    // Expected output: 1
+
+    // Start from index 2
+    console.log(beasts.indexOf("bison", 2));
+    // Expected output: 4
+
+    console.log(beasts.indexOf("giraffe"));
+    // Expected output: -1
     ```
 
-52. **What is `JSON`? How do you convert a JavaScript object to a JSON string?**
+52. **What is the difference between `slice` and `splice`?**
+
+    | Feature          | `slice`                                                                                 | `splice`                                                                                              |
+    | ---------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+    | **Purpose**      | Creates a new array containing a portion of the original array                          | Alters the original array by removing, replacing, or adding elements                                  |
+    | **Modification** | Does not modify the original array                                                      | Modifies the original array                                                                           |
+    | **Return Value** | Returns a new array                                                                     | Returns an array containing the removed elements                                                      |
+    | **Parameters**   | Takes two parameters: start index and end index (exclusive)                             | Takes three parameters: start index, number of elements to remove, and optional elements to add       |
+    | **Example**      | <code>["Apple", "Banana", "Cherry", "Date"].slice(1, 3);</code> // ['Banana', 'Cherry'] | <code>["Carrot", "Potato", "Cucumber"].splice(1, 1, "Tomato");` // Removes 'Potato' and adds 'Tomato' |
+
+53. **What is `JSON`? How do you convert a JavaScript object to a JSON string?**
 
     JSON (JavaScript Object Notation) is a lightweight data-interchange format that's easy for humans to read and write and easy for machines to parse and generate.
 
@@ -1419,7 +1404,7 @@ There are several types of selectors in JavaScript:
     let jsonString = JSON.stringify({ name: "John", age: 30 });
     ```
 
-53. **What is the `fetch` API?**
+54. **What is the `fetch` API?**
 
     The `fetch` API is a modern interface for making network requests similar to XMLHttpRequest, but with a more powerful and flexible feature set.
 
@@ -1429,7 +1414,7 @@ There are several types of selectors in JavaScript:
       .then((data) => console.log(data));
     ```
 
-54. **What are modules in JavaScript?**
+55. **What are modules in JavaScript?**
 
     Modules are reusable pieces of code that can be imported and exported, allowing for better organization and separation of concerns.
 
@@ -1443,7 +1428,7 @@ There are several types of selectors in JavaScript:
     import { myFunction } from "./myModule.js";
     ```
 
-55. **What is the difference between `localStorage` and `sessionStorage`?**
+56. **What is the difference between `localStorage` and `sessionStorage`?**
 
     | Feature       | `localStorage`                                                  | `sessionStorage`                                                        |
     | ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -1452,11 +1437,11 @@ There are several types of selectors in JavaScript:
     | Storage Limit | Typically around 5-10MB per origin                              | Typically around 5-10MB per origin                                      |
     | Use Case      | Suitable for storing data that needs to persist across sessions | Suitable for temporary data that is only needed during a single session |
 
-56. **What is a Symbol in JavaScript?**
+57. **What is a Symbol in JavaScript?**
 
     A Symbol is a unique and immutable primitive value and may be used as the key of an object property.
 
-57. **What is asynchronous programming in JS? What is its use?**
+58. **What is asynchronous programming in JS? What is its use?**
 
     Asynchronous programming in JavaScript allows for non-blocking operations, enabling the execution of code while waiting for other operations (like network requests) to complete. This is particularly useful for improving performance and user experience, as it prevents the application from freezing during long-running tasks.
 
@@ -1485,7 +1470,7 @@ There are several types of selectors in JavaScript:
     fetchDataAsync();
     ```
 
-58. **What is the `async`/`await` syntax?**
+59. **What is the `async`/`await` syntax?**
 
     `async`/`await` is syntax for writing asynchronous code in a more readable and synchronous-looking manner.
 
@@ -1497,7 +1482,7 @@ There are several types of selectors in JavaScript:
     }
     ```
 
-59. **What is a generator function?**
+60. **What is a generator function?**
 
     A generator function is a special type of function that can pause execution and return multiple values using the `yield` keyword.
 
@@ -1509,7 +1494,7 @@ There are several types of selectors in JavaScript:
     }
     ```
 
-60. **What is a Proxy in JavaScript?**
+61. **What is a Proxy in JavaScript?**
 
     A Proxy object allows you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
 
@@ -1522,26 +1507,26 @@ There are several types of selectors in JavaScript:
     let proxy = new Proxy({}, handler);
     ```
 
-61. **What is a `Set` in JavaScript?**
+62. **What is a `Set` in JavaScript?**
 
     - **Answer:** A `Set` is a collection of unique values, meaning a value in a `Set` can only occur once.
       ```javascript
       let mySet = new Set([1, 2, 3, 4, 4]);
       ```
 
-62. **What is the event loop in JavaScript?**
+63. **What is the event loop in JavaScript?**
 
     - **Answer:** The event loop is a mechanism that handles asynchronous callbacks by placing them in a queue, and executing them in order once the main thread is free.
 
-63. **What is a microtask in JavaScript?**
+64. **What is a microtask in JavaScript?**
 
     - **Answer:** Microtasks are tasks that are executed after the currently executing script and before the next rendering. They include tasks such as `Promise` callbacks.
 
-64. **What is the difference between synchronous and asynchronous code?**
+65. **What is the difference between synchronous and asynchronous code?**
 
     - **Answer:** Synchronous code is executed line by line, with each line blocking the execution until it's done. Asynchronous code allows other tasks to be performed while waiting for a process to complete.
 
-65. **What is the purpose of `setTimeout`?**
+66. **What is the purpose of `setTimeout`?**
 
     - **Answer:** `setTimeout` is used to execute a function after a specified number of milliseconds.
       ```javascript
@@ -1550,22 +1535,22 @@ There are several types of selectors in JavaScript:
       }, 2000);
       ```
 
-66. **What is the purpose of `setInterval`?**
+67. **What is the purpose of `setInterval`?**
     - **Answer:** `setInterval` is used to repeatedly execute a function every specified number of milliseconds.
       ```javascript
       setInterval(() => {
         console.log("Hello every 2 seconds");
       }, 2000);
       ```
-67. **What is Scope in JavaScript?**
+68. **What is Scope in JavaScript?**
 
     Scope in JavaScript refers to the current context of execution, which determines the accessibility of variables, objects, and functions in that context. There are two main types of scope: global scope, where variables are accessible from anywhere in the code, and local scope, where variables are only accessible within the function or block they are defined in.
 
-68. **What is lexical scoping in JavaScript?**
+69. **What is lexical scoping in JavaScript?**
 
     - **Answer:** Lexical scoping means that the accessibility of variables is determined by the physical placement of those variables within the nested function scopes.
 
-69. **What is a module pattern in JavaScript?**
+70. **What is a module pattern in JavaScript?**
 
     - **Answer:** The module pattern is used to emulate private and public scope by creating a closure around a function that returns an object.
       ```javascript
@@ -1579,7 +1564,7 @@ There are several types of selectors in JavaScript:
       })();
       ```
 
-70. **What is an IIFE (Immediately Invoked Function Expression)?**
+71. **What is an IIFE (Immediately Invoked Function Expression)?**
 
     - **Answer:** An IIFE is a function that is executed immediately after it is defined.
       ```javascript
@@ -1588,7 +1573,7 @@ There are several types of selectors in JavaScript:
       })();
       ```
 
-71. **What is a higher-order function? What are the benefits higher order functions?**
+72. **What is a higher-order function? What are the benefits higher order functions?**
 
     A higher-order function is a function that either takes one or more functions as arguments, returns a function, or both.
 
@@ -1610,7 +1595,7 @@ There are several types of selectors in JavaScript:
     - Immutability
     - Modularity
 
-72. **What is function currying?**
+73. **What is function currying?**
 
     Function currying is the process of transforming a function with multiple arguments into a series of functions that each take a single argument.
 
@@ -1633,7 +1618,7 @@ There are several types of selectors in JavaScript:
     const result = curryAdd(5)(3)(10); // Returns 18
     ```
 
-73. **What is prototypal inheritance?**
+74. **What is prototypal inheritance?**
 
     Prototypal inheritance is a feature in JavaScript where objects can inherit properties and methods from other objects.
 
@@ -1648,13 +1633,13 @@ There are several types of selectors in JavaScript:
     child.greet(); // Output: "Hello from parent"
     ```
 
-74. **What is the difference between `Object.create` and `class inheritance`?**
+75. **What is the difference between `Object.create` and `class inheritance`?**
 
     `Object.create()` offers a more direct, flexible, and prototype-oriented way to create objects with specific prototypes.
 
     `Class inheritance` provides a more structured, OOP-like approach to object creation and inheritance, using the class and extends syntax, making it more familiar and readable in many contexts.
 
-75. **What are getter and setter methods?**
+76. **What are getter and setter methods?**
 
     Getter and setter methods are special methods that provide a way to get and set the values of object properties.
 
@@ -1670,19 +1655,19 @@ There are several types of selectors in JavaScript:
     };
     ```
 
-76. **What is the difference between `Object.keys` and `Object.values`?**
+77. **What is the difference between `Object.keys` and `Object.values`?**
 
     `Object.keys` returns an array of the keys (property names) of an object.
 
     `Object.values` returns an array of the values corresponding to those keys in an object.
 
-77. **What is the difference between `Object.freeze` and `Object.seal`?**
+78. **What is the difference between `Object.freeze` and `Object.seal`?**
 
     `Object.freeze():`Completely freezes the object, making it fully immutable. You cannot add, delete, or modify properties or their attributes.
 
     `Object.seal():` Seals the object, allowing modification of existing properties but preventing the addition or deletion of properties. The object's structure is locked, but values of existing properties can still be changed.
 
-78. **What is the `forEach` method in JavaScript?**
+79. **What is the `forEach` method in JavaScript?**
 
     The `forEach` executes the provided callback function once for each array element in order, starting from index 0 to the last index. The `forEach` method does not return a new array or any value; its purpose is purely to perform side effects (e.g., logging, modifying external variables) for each element.
 
@@ -1694,7 +1679,7 @@ There are several types of selectors in JavaScript:
     });
     ```
 
-79. **What is the `find` method in JavaScript?**
+80. **What is the `find` method in JavaScript?**
 
     The `find` method is an array method that returns the first element in the array that satisfies a provided testing function. If no elements satisfy the testing function, `undefined` is returned. The `find` method stops executing once it finds an element that passes the test.
 
@@ -1710,7 +1695,7 @@ There are several types of selectors in JavaScript:
     console.log(user); // Output: { id: 2, name: 'Bob' }
     ```
 
-80. **What is the `findIndex` method in JavaScript?**
+81. **What is the `findIndex` method in JavaScript?**
 
     The `findIndex` method is an array method that returns the index of the first element in the array that satisfies a provided testing function. If no elements satisfy the testing function, it returns -1. This method is similar to the `find` method, but instead of returning the element itself, it returns its index.
 
@@ -1720,7 +1705,7 @@ There are several types of selectors in JavaScript:
     console.log(index); // Output: 2 (index of the first element greater than 10, which is 12)
     ```
 
-81. **What is the `some` method in JavaScript?**
+82. **What is the `some` method in JavaScript?**
 
     The `some` method tests whether at least one element in the array passes passes a given test (provided as a callback function). It returns `true` if the callback function returns `true` for at least one element in the array, otherwise it returns `false`.
 
@@ -1736,7 +1721,7 @@ There are several types of selectors in JavaScript:
     console.log(hasNegativeNumber); // Output: false
     ```
 
-82. **What is the `every` method in JavaScript?**
+83. **What is the `every` method in JavaScript?**
 
     The `every` method is an array method that tests whether all elements in the array pass a specified test (provided as a callback function). It returns a Boolean value - `true` if the callback function returns `true` for every array element; otherwise, it returns `false`.
 
@@ -1750,7 +1735,7 @@ There are several types of selectors in JavaScript:
     console.log(allGreaterThanFive); // Output: false
     ```
 
-83. **How do you create a regular expression in JavaScript?**
+84. **How do you create a regular expression in JavaScript?**
 
     In JavaScript, you can create a regular expression using two methods:
 
@@ -1769,7 +1754,7 @@ There are several types of selectors in JavaScript:
 
     The literal notation is more concise and generally preferred when the pattern is known at compile time. The RegExp constructor is useful when you need to create a regex dynamically at runtime.
 
-84. **What are regular expression flags? How do you test a string against a regular expression?**
+85. **What are regular expression flags? How do you test a string against a regular expression?**
 
     Regular expression flags are optional parameters that modify the behavior of a regular expression. They are appended to the end of a regex literal or passed as a second argument to the RegExp constructor. Common flags include:
 
@@ -1810,7 +1795,7 @@ There are several types of selectors in JavaScript:
     console.log(unicodeRegex.test("😀")); // Output: true
     ```
 
-85. **How do you replace parts of a string using a regular expression?**
+86. **How do you replace parts of a string using a regular expression?**
 
     You can use the `replace()` method with a regular expression to replace parts of a string. Here are a few examples:
 
@@ -1853,7 +1838,7 @@ There are several types of selectors in JavaScript:
        console.log(newString); // Output: "Apple Banana Cherry"
        ```
 
-86. **What are some best practices for writing JavaScript code?**
+87. **What are some best practices for writing JavaScript code?**
 
 - **Answer:** Use `let` and `const` instead of `var`, write descriptive variable names, keep functions small and focused, use comments judiciously, and follow consistent coding conventions.
 
