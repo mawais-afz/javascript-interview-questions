@@ -1282,72 +1282,74 @@ There are several types of selectors in JavaScript:
 
 52. **What is the difference between `localStorage` and `sessionStorage`?**
 
-| Feature       | `localStorage`                                                  | `sessionStorage`                                                        |
-| ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Lifetime      | Data persists even after the browser is closed                  | Data is cleared when the page session ends (browser/tab is closed)      |
-| Scope         | Accessible across all tabs and windows of the same origin       | Accessible only within the same tab or window                           |
-| Storage Limit | Typically around 5-10MB per origin                              | Typically around 5-10MB per origin                                      |
-| Use Case      | Suitable for storing data that needs to persist across sessions | Suitable for temporary data that is only needed during a single session |
+    | Feature       | `localStorage`                                                  | `sessionStorage`                                                        |
+    | ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- |
+    | Lifetime      | Data persists even after the browser is closed                  | Data is cleared when the page session ends (browser/tab is closed)      |
+    | Scope         | Accessible across all tabs and windows of the same origin       | Accessible only within the same tab or window                           |
+    | Storage Limit | Typically around 5-10MB per origin                              | Typically around 5-10MB per origin                                      |
+    | Use Case      | Suitable for storing data that needs to persist across sessions | Suitable for temporary data that is only needed during a single session |
 
-48. **What is a Symbol in JavaScript?**
+53. **What is a Symbol in JavaScript?**
 
     A Symbol is a unique and immutable primitive value and may be used as the key of an object property.
 
-49. **What is the `async`/`await` syntax?**
+54. **What is the `async`/`await` syntax?**
 
-    - **Answer:** `async`/`await` is syntax for writing asynchronous code in a more readable and synchronous-looking manner.
-      ```javascript
-      async function fetchData() {
-        let response = await fetch("https://api.example.com/data");
-        let data = await response.json();
-        console.log(data);
-      }
-      ```
+    `async`/`await` is syntax for writing asynchronous code in a more readable and synchronous-looking manner.
 
-50. **What is a generator function?**
+    ```javascript
+    async function fetchData() {
+      let response = await fetch("https://api.example.com/data");
+      let data = await response.json();
+      console.log(data);
+    }
+    ```
 
-    - **Answer:** A generator function is a special type of function that can pause execution and return multiple values using the `yield` keyword.
-      ```javascript
-      function* generatorFunction() {
-        yield 1;
-        yield 2;
-        yield 3;
-      }
-      ```
+55. **What is a generator function?**
 
-51. **What is a Proxy in JavaScript?**
+    A generator function is a special type of function that can pause execution and return multiple values using the `yield` keyword.
 
-    - **Answer:** A Proxy object allows you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
-      ```javascript
-      let handler = {
-        get: function (target, prop) {
-          return prop in target ? target[prop] : 42;
-        },
-      };
-      let proxy = new Proxy({}, handler);
-      ```
+    ```javascript
+    function* generatorFunction() {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+    ```
 
-52. **What is a `Set` in JavaScript?**
+56. **What is a Proxy in JavaScript?**
+
+    A Proxy object allows you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
+
+    ```javascript
+    let handler = {
+      get: function (target, prop) {
+        return prop in target ? target[prop] : 42;
+      },
+    };
+    let proxy = new Proxy({}, handler);
+    ```
+
+57. **What is a `Set` in JavaScript?**
+
     - **Answer:** A `Set` is a collection of unique values, meaning a value in a `Set` can only occur once.
       ```javascript
       let mySet = new Set([1, 2, 3, 4, 4]);
       ```
 
-### Event Loop and Concurrency
-
-61. **What is the event loop in JavaScript?**
+58. **What is the event loop in JavaScript?**
 
     - **Answer:** The event loop is a mechanism that handles asynchronous callbacks by placing them in a queue, and executing them in order once the main thread is free.
 
-62. **What is a microtask in JavaScript?**
+59. **What is a microtask in JavaScript?**
 
     - **Answer:** Microtasks are tasks that are executed after the currently executing script and before the next rendering. They include tasks such as `Promise` callbacks.
 
-63. **What is the difference between synchronous and asynchronous code?**
+60. **What is the difference between synchronous and asynchronous code?**
 
     - **Answer:** Synchronous code is executed line by line, with each line blocking the execution until it's done. Asynchronous code allows other tasks to be performed while waiting for a process to complete.
 
-64. **What is the purpose of `setTimeout`?**
+61. **What is the purpose of `setTimeout`?**
 
     - **Answer:** `setTimeout` is used to execute a function after a specified number of milliseconds.
       ```javascript
@@ -1356,7 +1358,7 @@ There are several types of selectors in JavaScript:
       }, 2000);
       ```
 
-65. **What is the purpose of `setInterval`?**
+62. **What is the purpose of `setInterval`?**
     - **Answer:** `setInterval` is used to repeatedly execute a function every specified number of milliseconds.
       ```javascript
       setInterval(() => {
