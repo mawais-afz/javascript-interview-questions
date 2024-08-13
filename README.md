@@ -1,7 +1,5 @@
 # JavaScript Interview Questions And Answers
 
-## JS Fundamentals
-
 1. **What is JavaScript? Where is it mostly used?**
 
    JavaScript is a high-level, interpreted programming language that is primarily used to create interactive and dynamic content on websites. It allows developers to implement complex features on web pages, such as animated graphics, clickable buttons, and real-time updates.
@@ -139,7 +137,120 @@
    | Performance       | Generally faster                                                       | Generally slower due to reference handling |
    | Type Checking     | Type is determined at compile time                                     | Type can change at runtime                 |
 
-10. **What is hoisting?**
+10. **What are operators? What are the types of operators in JS?**
+
+    Operators are special symbols in JavaScript that perform operations on variables and values. They are used to manipulate data and variables, allowing for calculations, comparisons, and logical operations.
+
+    ### Types of Operators in JavaScript
+
+    1. **Arithmetic Operators**: Used to perform mathematical operations.
+
+       - `+` (Addition)
+       - `-` (Subtraction)
+       - `*` (Multiplication)
+       - `/` (Division)
+       - `%` (Modulus)
+       - `**` (Exponentiation)
+
+    2. **Assignment Operators**: Used to assign values to variables.
+
+       - `=` (Assignment)
+       - `+=` (Addition assignment)
+       - `-=` (Subtraction assignment)
+       - `*=` (Multiplication assignment)
+       - `/=` (Division assignment)
+       - `%=` (Modulus assignment)
+
+    3. **Comparison Operators**: Used to compare two values.
+
+       - `==` (Equal to)
+       - `===` (Strict equal to)
+       - `!=` (Not equal to)
+       - `!==` (Strict not equal to)
+       - `>` (Greater than)
+       - `<` (Less than)
+       - `>=` (Greater than or equal to)
+       - `<=` (Less than or equal to)
+
+    4. **Logical Operators**: Used to combine multiple boolean expressions.
+
+       - `&&` (Logical AND)
+       - `||` (Logical OR)
+       - `!` (Logical NOT)
+
+    5. **Bitwise Operators**: Used to perform operations on binary representations of numbers.
+
+       - `&` (Bitwise AND)
+       - `|` (Bitwise OR)
+       - `^` (Bitwise XOR)
+       - `~` (Bitwise NOT)
+       - `<<` (Left shift)
+       - `>>` (Right shift)
+       - `>>>` (Unsigned right shift)
+
+    6. **Ternary Operator**: A shorthand for the `if-else` statement.
+
+       - `condition ? expr1 : expr2`
+
+    7. **Type Operators**: Used to check the type of a variable.
+       - `typeof` (Returns the type of a variable)
+       - `instanceof` (Checks if an object is an instance of a specific class)
+
+11. **What are the types of condition statements in JS?**
+
+    In JavaScript, condition statements are used to perform different actions based on different conditions. The main types of condition statements include:
+
+    1. **if statement**: Executes a block of code if a specified condition is true.
+
+       ```javascript
+       if (condition) {
+         // code to be executed if condition is true
+       }
+       ```
+
+    2. **if...else statement**: Executes one block of code if the condition is true and another block of code if it is false.
+
+       ```javascript
+       if (condition) {
+         // code to be executed if condition is true
+       } else {
+         // code to be executed if condition is false
+       }
+       ```
+
+    3. **else if statement**: Specifies a new condition to test if the first condition is false.
+
+       ```javascript
+       if (condition1) {
+         // code to be executed if condition1 is true
+       } else if (condition2) {
+         // code to be executed if condition2 is true
+       } else {
+         // code to be executed if both conditions are false
+       }
+       ```
+
+    4. **switch statement**: Allows a variable to be tested for equality against a list of values, each with its own block of code.
+
+       ```javascript
+       switch (expression) {
+         case value1:
+           // code to be executed if expression === value1
+           break;
+         case value2:
+           // code to be executed if expression === value2
+           break;
+         default:
+         // code to be executed if expression doesn't match any case
+       }
+       ```
+
+    5. **ternary operator**: A shorthand for the `if...else` statement.
+       ```javascript
+       condition ? expr1 : expr2;
+       ```
+
+12. **What is hoisting?**
 
     Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compile phase. This means that you can use variables and functions before they are declared in the code.
 
@@ -183,7 +294,7 @@
        };
        ```
 
-11. **What is the difference between `null` and `undefined`, or `undeclared`?**
+13. **What is the difference between `null` and `undefined`, or `undeclared`?**
 
     These three terms represent different states of a variable in JavaScript, and understanding their differences is crucial for effective coding.
 
@@ -200,7 +311,7 @@
     | JSON serialization       | Serialized as "null"                                       | Omitted from JSON output                                   | Not applicable                                                |
     | Example                  | `let obj = null;`                                          | `let var;` or `let obj = undefined;`                       | `console.log(myVar); // ReferenceError: myVar is not defined` |
 
-12. **What is a function in JavaScript? How do you define a function in JavaScript?**
+14. **What is a function in JavaScript? How do you define a function in JavaScript?**
 
     A function is a block of code designed to perform a particular task, and it is executed when something invokes it.
 
@@ -210,7 +321,7 @@
     }
     ```
 
-13. **What is a function expression?**
+15. **What is a function expression?**
 
     A function expression is a function defined inside an expression instead of a declaration.
 
@@ -220,7 +331,7 @@
     };
     ```
 
-14. **What are arrow functions? Can we use arguments object in arrow function?**
+16. **What are arrow functions? Can we use arguments object in arrow function?**
 
     Arrow functions are a concise syntax for writing function expressions using the `=>` syntax. Unlike regular functions, arrow functions do not have their own `this`, and they cannot use the `arguments` object. Instead, you can use rest parameters to achieve similar functionality.
 
@@ -231,7 +342,7 @@
     };
     ```
 
-15. **What are the differences between pure and impure functions?**
+17. **What are the differences between pure and impure functions?**
 
     | Aspect         | Pure Functions                                                                                      | Impure Functions                                                                                                 |
     | -------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -241,7 +352,7 @@
     | Usage          | Ideal for functional programming and scenarios requiring reliability.                               | Common in scenarios where interaction with external systems is necessary.                                        |
     | Example        | `function add(a, b) { return a + b; }`                                                              | `function fetchData() { return fetch('api/data'); }`                                                             |
 
-16. **What is the difference between function declarations and function expressions?**
+18. **What is the difference between function declarations and function expressions?**
 
     | Aspect             | Function Declarations                         | Function Expressions                                   |
     | ------------------ | --------------------------------------------- | ------------------------------------------------------ |
@@ -256,7 +367,7 @@
     | Binding            | Bound to function name in its scope           | Bound to variable or property it's assigned to         |
     | In Objects/Classes | Often used directly as methods                | Commonly used as methods, especially in ES6 classes    |
 
-17. **What does the new keyword do?**
+19. **What does the new keyword do?**
 
     The `new` keyword is used to create an instance of an object that is defined by a constructor function. When `new` is used, it performs the following actions:
 
@@ -278,7 +389,7 @@
     console.log(person1.age); // Output: 30
     ```
 
-18. **What is a JavaScript object? What are the possible ways to create objects in JavaScript?**
+20. **What is a JavaScript object? What are the possible ways to create objects in JavaScript?**
 
     A JavaScript object is a collection of key-value pairs where the keys are strings (or Symbols) and the values can be of any data type. Objects are used to store and organize data and functions.
 
@@ -347,11 +458,11 @@
        const person = new Person("John", 30);
        ```
 
-19. **What is the `this` keyword in JavaScript?**
+21. **What is the `this` keyword in JavaScript?**
 
     `this` refers to the object from which it was called. Its value depends on the context in which the function is called.
 
-20. **What is the `this` keyword in traditional and arrow function?**
+22. **What is the `this` keyword in traditional and arrow function?**
 
     | **Aspect**             | **Traditional Functions**                                                                          | **Arrow Functions**                                                                     |
     | ---------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -365,26 +476,43 @@
     | **Usage in Objects**   | Commonly used for object methods when `this` should refer to the object.                           | Useful for callbacks and functions that don't need their own `this` context.            |
     | **`arguments` Object** | Has access to the `arguments` object.                                                              | Does not have its own `arguments` object; inherits from the enclosing scope if needed.  |
 
+There are several types of selectors in JavaScript:
+
 21. **How do you select elements in JavaScript?**
 
-- **By ID:**
+    Selectors in JavaScript are methods used to select and manipulate HTML elements in the Document Object Model (DOM). They allow developers to access elements based on their attributes, such as ID, class, or tag name, and perform actions on them.
 
-  ```javascript
-  document.getElementById("myElement");
-  ```
+    1. **ID Selector**: Selects a single element with a specific ID.
 
-- **By Class Name:**
+       ```javascript
+       const element = document.getElementById("myId");
+       ```
 
-  ```javascript
-  document.getElementsByClassName("myClass");
-  ```
+    2. **Class Selector**: Selects all elements with a specific class name.
 
-- **By Tag Name:**
-  ```javascript
-  document.getElementsByTagName("div");
-  ```
+       ```javascript
+       const elements = document.getElementsByClassName("myClass");
+       ```
 
-18. **What is difference between querySelector and querySelectorAll?**
+    3. **Tag Selector**: Selects all elements of a specific tag name.
+
+       ```javascript
+       const elements = document.getElementsByTagName("div");
+       ```
+
+    4. **Query Selector**: Selects the first element that matches a CSS selector.
+
+       ```javascript
+       const element = document.querySelector(".myClass");
+       ```
+
+    5. **Query Selector All**: Selects all elements that match a CSS selector.
+
+       ```javascript
+       const elements = document.querySelectorAll("div.myClass");
+       ```
+
+22. **What is difference between querySelector and querySelectorAll?**
 
     | Feature            | `querySelector`                                             | `querySelectorAll`                                                              |
     | ------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------- |
@@ -396,7 +524,7 @@
     | **Modification**   | You can directly modify the single element returned.        | You need to iterate over the `NodeList` to modify multiple elements.            |
     | **Pseudo-Classes** | Supports pseudo-classes like `:first-child`, `:last-child`. | Supports pseudo-classes in a similar way, but applies to all matching elements. |
 
-19. **What is an event in JavaScript? How do you add an event listener in JavaScript?**
+23. **What is an event in JavaScript? How do you add an event listener in JavaScript?**
 
     An event is an action or occurrence that can be detected and handled by JavaScript. Here are some common types of JavaScript events:
 
@@ -421,7 +549,7 @@
     });
     ```
 
-20. **What are custom events? How to create a custom event in JavaScript?**
+24. **What are custom events? How to create a custom event in JavaScript?**
 
     Custom events are user-defined events that can be created and dispatched in JavaScript to signal that something has happened. They allow developers to create their own events that can be listened to and handled just like built-in events.
 
@@ -456,7 +584,7 @@
     document.dispatchEvent(event2);
     ```
 
-21. **What is differance between event bubbling and event capturing?**
+25. **What is differance between event bubbling and event capturing?**
 
     | Feature             | Event Bubbling                                                   | Event Capturing                                                |
     | ------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -469,7 +597,7 @@
     | **Performance**     | Generally faster, as it's the default                            | Can be slightly slower due to additional processing            |
     | **Use Case**        | Useful for event delegation patterns                             | Useful when you need to handle events before they reach target |
 
-22. **What is a Promise in JavaScript? How do you create a Promise?**
+26. **What is a Promise in JavaScript? How do you create a Promise?**
 
     A Promise is an object representing the eventual completion or failure of an asynchronous operation.
 
@@ -498,7 +626,7 @@
       });
     ```
 
-23. **What are the states of a Promise?**
+27. **What are the states of a Promise?**
 
     | State     | Description                                                                               | Transition                                         | Handling Method |
     | --------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------- | --------------- |
@@ -507,7 +635,7 @@
     | Rejected  | The operation failed. The Promise has a reason for the failure (usually an error object). | Final state. Cannot transition to any other state. | .catch()        |
     | Settled   | A Promise is settled if it's either Fulfilled or Rejected, but not Pending.               | Represents both Fulfilled and Rejected states      | .finally()      |
 
-24. **What is the difference between `==` and `===`?**
+28. **What is the difference between `==` and `===`?**
 
     | Feature             | `==` (Equality)                                                                   | `===` (Strict Equality)                                                             |
     | ------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -529,7 +657,7 @@
     console.log(null === undefined); // false, different types (null and undefined)
     ```
 
-25. **What are template literals?**
+29. **What are template literals?**
 
     Template literals are a feature in JavaScript that allow for more flexible string creation and manipulation. They are enclosed by backticks (`` ` ``) instead of single or double quotes.
 
@@ -567,7 +695,7 @@
     console.log(taggedResult); // Output: Hello, world!
     ```
 
-26. **What are default parameters in JavaScript functions?**
+30. **What are default parameters in JavaScript functions?**
 
     Default parameters in JavaScript functions allow you to specify default values for function parameters. These default values are used when an argument is not provided or is explicitly set to `undefined` when the function is called.
 
@@ -608,7 +736,7 @@
     console.log(calculateTotal(100, 0.15, 10)); // Uses all provided values
     ```
 
-27. **What is destructuring assignment?**
+31. **What is destructuring assignment?**
 
     Destructuring assignment is a syntax that allows unpacking/extracting values from arrays or objects into distinct variables, making it easier to work with complex data structures.
 
@@ -630,7 +758,7 @@
     console.log(y); // Output: 20
     ```
 
-28. **What are rest parameters?**
+32. **What are rest parameters?**
 
     Rest parameters allow a function to accept an indefinite number of arguments as an array. They are denoted by three dots (...) followed by a parameter name.
 
@@ -664,7 +792,7 @@
     // Hello, Charlie!
     ```
 
-29. **What is the `map` method in JavaScript?**
+33. **What is the `map` method in JavaScript?**
 
     The `map` method in JavaScript is used to create a new array by applying a function to each element of an existing array. It doesn't modify the original array but instead returns a new array with the results of the function applied to each element.
 
@@ -693,7 +821,7 @@
     console.log(names); // ['Alice', 'Bob', 'Charlie']
     ```
 
-30. **What is the `filter` method in JavaScript?**
+34. **What is the `filter` method in JavaScript?**
 
     The `filter` method in JavaScript is used to create a new array containing all elements that pass a test implemented by a provided function. It allows you to filter out elements from an array based on certain criteria without modifying the original array.
 
@@ -729,7 +857,7 @@
     // [{ name: 'Bob', age: 25 }, { name: 'Charlie', age: 30 }]
     ```
 
-31. **What is the `reduce` method in JavaScript?**
+35. **What is the `reduce` method in JavaScript?**
 
     The `reduce` method in JavaScript is used to apply a function against an accumulator and each element in an array (from left to right) to reduce it to a single value. It’s often used to perform operations like summing numbers, concatenating strings, or accumulating results based on array elements.
 
@@ -743,7 +871,7 @@
     console.log(sum); // Output: 15
     ```
 
-32. **What is a closure in JavaScript?**
+36. **What is a closure in JavaScript?**
 
     A closure is a function that retains access to its outer scope variables even after the outer function has finished executing. This allows for data encapsulation and private variables.
 
@@ -773,7 +901,7 @@
     console.log(counter.decrement()); // Output: 1
     ```
 
-33. **How many ways can a function be invoked?**
+37. **How many ways can a function be invoked?**
 
     A function in JavaScript can be invoked in several ways:
 
@@ -827,7 +955,7 @@
 
     Each of these invocation methods has its own behavior and context for the `this` keyword.
 
-34. **What is the difference between `call`, `apply`, and `bind`?**
+38. **What is the difference between `call`, `apply`, and `bind`?**
 
     `call`, `apply`, and `bind` are methods used to manipulate the `this` context of a function in JavaScript. Here's how they differ:
 
@@ -884,7 +1012,7 @@
     - `call` takes arguments separately, `apply` takes them as an array.
     - `bind` allows for partial application of arguments.
 
-35. **What is the `try...catch` statement in JavaScript?**
+39. **What is the `try...catch` statement in JavaScript?**
 
     The `try...catch` statement allows you to handle exceptions by running code in the `try` block and catching errors in the `catch` block.
 
@@ -896,7 +1024,7 @@
     }
     ```
 
-36. **What is the `finally` block in JavaScript?**
+40. **What is the `finally` block in JavaScript?**
 
     The `finally` block contains code that will run regardless of whether an error was thrown or not.
 
@@ -910,7 +1038,7 @@
     }
     ```
 
-37. **How do you throw an error in JavaScript?**
+41. **How do you throw an error in JavaScript?**
 
     To throw an error in JavaScript, you use the `throw` statement followed by an `Error` object or any other value. Here are a few examples:
 
@@ -934,7 +1062,7 @@
 
     It's generally recommended to throw `Error` objects or instances of `Error` subclasses, as they provide a stack trace and are more informative for debugging.
 
-38. **What is a custom error?**
+42. **What is a custom error?**
 
     A custom error is a user-defined error type that extends the built-in Error class or one of its subclasses. It allows developers to create specific error types for different scenarios in their application, providing more detailed and contextual error information.
 
@@ -978,7 +1106,7 @@
     3. Better error reporting and logging
     4. Increased code readability and maintainability
 
-39. **What is `typeof` operator in JavaScript?**
+43. **What is `typeof` operator in JavaScript?**
 
     The `typeof` operator in JavaScript is a unary operator that returns a string indicating the type of the unevaluated operand. It's used to determine the type of a value or expression.
 
@@ -1008,7 +1136,7 @@
 
     For more precise type checking, especially with objects, you might need to use other methods like `instanceof` or check for specific properties.
 
-40. **What is `instanceof` operator in JavaScript?**
+44. **What is `instanceof` operator in JavaScript?**
 
     The `instanceof` operator tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
 
@@ -1032,7 +1160,7 @@
     console.log(myDog instanceof Array); // false
     ```
 
-41. **What is a callback function?**
+45. **What is a callback function?**
 
     A callback function is a function passed as an argument to another function, which is then invoked inside that function, often after some operation has been completed. Callbacks are commonly used in asynchronous operations, event handling, and to implement higher-order functions.
 
@@ -1060,7 +1188,7 @@
     fetchData(processData);
     ```
 
-42. **What is `NaN` in JavaScript?**
+46. **What is `NaN` in JavaScript?**
 
     `NaN` stands for "Not-a-Number" aand is a special value that indicates/representing an invalid or unrepresentable number.
 
@@ -1087,7 +1215,7 @@
     console.log(parseInt("abc")); // NaN
     ```
 
-43. **What is `use strict`?**
+47. **What is `use strict`?**
 
     `"use strict"` is a directive that enables strict mode, which makes error-checking more robust and prevents the use of certain JavaScript features that are considered problematic.
 
@@ -1095,7 +1223,7 @@
     "use strict";
     ```
 
-44. **What is the difference between `slice` and `splice`?**
+48. **What is the difference between `slice` and `splice`?**
 
     `slice` creates a new array containing a portion of the original array without modifying it, while `splice` directly alters the original array by removing, replacing, or adding elements.
 
@@ -1115,7 +1243,7 @@
     console.log(vegetables); // Output: ['Carrot', 'Tomato', 'Cucumber']
     ```
 
-45. **What is `JSON`? How do you convert a JavaScript object to a JSON string?**
+49. **What is `JSON`? How do you convert a JavaScript object to a JSON string?**
 
     JSON (JavaScript Object Notation) is a lightweight data-interchange format that's easy for humans to read and write and easy for machines to parse and generate.
 
@@ -1128,7 +1256,7 @@
     let jsonString = JSON.stringify({ name: "John", age: 30 });
     ```
 
-46. **What is the `fetch` API?**
+50. **What is the `fetch` API?**
 
     The `fetch` API is a modern interface for making network requests similar to XMLHttpRequest, but with a more powerful and flexible feature set.
 
@@ -1138,7 +1266,7 @@
       .then((data) => console.log(data));
     ```
 
-47. **What are modules in JavaScript?**
+51. **What are modules in JavaScript?**
 
     Modules are reusable pieces of code that can be imported and exported, allowing for better organization and separation of concerns.
 
@@ -1152,7 +1280,7 @@
     import { myFunction } from "./myModule.js";
     ```
 
-48. **What is the difference between `localStorage` and `sessionStorage`?**
+52. **What is the difference between `localStorage` and `sessionStorage`?**
 
 | Feature       | `localStorage`                                                  | `sessionStorage`                                                        |
 | ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- |
