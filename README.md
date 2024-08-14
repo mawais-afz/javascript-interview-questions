@@ -1,5 +1,12 @@
 # JavaScript Interview Questions And Answers
 
+# Table of Contents
+
+1. [JS Fundamentals](#js-fundamentals)
+2. [Variables & Datatypes](#variables--datatypes)
+
+## JS Fundamentals
+
 1. **What is JavaScript? Where is it mostly used?**
 
    JavaScript is a high-level, interpreted programming language that is primarily used to create interactive and dynamic content on websites. It allows developers to implement complex features on web pages, such as animated graphics, clickable buttons, and real-time updates.
@@ -10,7 +17,53 @@
 
    - **Server Side**: Refers to operations that are performed on the server, which is a remote machine that hosts the application and its data. The server processes requests from the client, performs necessary computations, accesses databases, and sends back the appropriate responses. Server-side technologies include Node.js, Python, Java, Ruby, PHP, and databases like MySQL and MongoDB.
 
-3. **What are variables? What is the difference between `var`, `let`, and `const?`**
+3. **What is hoisting?**
+
+   Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compile phase. This means that you can use variables and functions before they are declared in the code.
+
+   #### How Hoisting Works
+
+   1. **Variable Hoisting**:
+
+      Variables declared with `var` are hoisted to the top of their function or global scope, but their initialization remains in place. This means that the variable is accessible before its declaration, but its value will be `undefined` until the line where it is initialized is executed.
+
+      ```javascript
+      console.log(myVar); // Output: undefined
+      var myVar = 5;
+      console.log(myVar); // Output: 5
+      ```
+
+      Variables declared with `let` and `const` are also hoisted, but they are not initialized. Accessing them before their declaration results in a `ReferenceError` due to the "temporal dead zone."
+
+      ```javascript
+      console.log(myLet); // ReferenceError: Cannot access 'myLet' before initialization
+      let myLet = 10;
+      ```
+
+   2. **Function Hoisting**:
+
+      Function declarations are fully hoisted, meaning you can call a function before it is defined in the code.
+
+      ```javascript
+      myFunction(); // Output: "Hello, World!"
+
+      function myFunction() {
+        console.log("Hello, World!");
+      }
+      ```
+
+      Function expressions, however, are not hoisted in the same way. If you try to call a function expression before it is defined, you will get a `TypeError`.
+
+      ```javascript
+      myFunc(); // TypeError: myFunc is not a function
+      var myFunc = function () {
+        console.log("Hello, World!");
+      };
+      ```
+
+## Variables & Datatypes
+
+4. **What are variables? What is the difference between `var`, `let`, and `const?`**
 
    A variable is a container for storing data values. Variables are declared using the `var`, `let`, or `const` keywords.
 
@@ -24,7 +77,23 @@
    | Usage          | Older JavaScript, can lead to unexpected behavior | Modern JavaScript, better scoping control        | Constants and immutable references               |
    | Example        | `var x = 1; var x = 2; // Allowed`                | `let y = 1; let y = 2; // SyntaxError`           | `const z = 1; z = 2; // TypeError`               |
 
-4. **What are some important string operations in JS?**
+5. **What are the data types in JavaScript?**
+
+   The main data types in JavaScript are: `Number`, `Bigint`, `String`, `Boolean`, `Object`, `Undefined`, `Null`, and `Symbol`
+
+6. **What are the differences between primitives and non-primitives?**
+
+   | Feature           | Primitives                                                             | Non-Primitives                             |
+   | ----------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
+   | Definition        | Basic data types that are immutable                                    | Complex data types that can be modified    |
+   | Examples          | `Number`, `String`, `Boolean`, `Null`, `Undefined`, `Symbol`, `BigInt` | `Object`, `Array`, `Function`              |
+   | Memory Allocation | Stored directly in the stack                                           | Stored as references in the heap           |
+   | Mutability        | Immutable (cannot be changed)                                          | Mutable (can be changed)                   |
+   | Comparison        | Compared by value                                                      | Compared by reference                      |
+   | Performance       | Generally faster                                                       | Generally slower due to reference handling |
+   | Type Checking     | Type is determined at compile time                                     | Type can change at runtime                 |
+
+7. **What are some important string operations in JS?**
 
    Some important string operations in JavaScript include:
 
@@ -84,7 +153,7 @@
      console.log(str.split(", ")); // Output: ["Hello", "World!"]
      ```
 
-5. **What is DOM?**
+8. **What is DOM?**
    The Document Object Model (DOM) is a programming interface for web documents. It represents the structure of a document as a tree of objects, allowing programs to manipulate the content, structure, and style of a document dynamically. The DOM provides a way for scripts to access and update the content, structure, and style of a document.
 
    **What is the difference between HTML and DOM?**
@@ -97,7 +166,7 @@
    | **Interaction**    | Cannot be directly manipulated by scripts.                   | Can be manipulated using JavaScript or other programming languages.                       |
    | **Purpose**        | To define the layout and content of a web page.              | To provide a structured representation of the document for programming.                   |
 
-6. **What are phases of DOM event handling?**
+9. **What are phases of DOM event handling?**
 
    | **Phase**           | **Description**                                                                               | **Event Triggering**                                                         |
    | ------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -105,39 +174,23 @@
    | **Target Phase**    | The event reaches the target element, where the actual event handling occurs.                 | The event is handled by the target element itself.                           |
    | **Bubbling Phase**  | The event bubbles up from the target element back up to the outer elements.                   | The event is processed by ancestor elements from the target element outward. |
 
-7. **What is an execution context in JavaScript?**
+10. **What is an execution context in JavaScript?**
 
-   An execution context is an abstract concept that holds information about the environment within which the current code is being executed. It consists of the following components:
+    An execution context is an abstract concept that holds information about the environment within which the current code is being executed. It consists of the following components:
 
-   - **Variable Object (VO)**: Contains function arguments, inner variable declarations, and function declarations.
-   - **Scope Chain**: A chain of all the variable objects that are accessible to the current execution context, allowing for variable resolution.
-   - **this Value**: Refers to the object that is currently executing the code, which can vary depending on how a function is called.
+    - **Variable Object (VO)**: Contains function arguments, inner variable declarations, and function declarations.
+    - **Scope Chain**: A chain of all the variable objects that are accessible to the current execution context, allowing for variable resolution.
+    - **this Value**: Refers to the object that is currently executing the code, which can vary depending on how a function is called.
 
-   There are three types of execution contexts:
+    There are three types of execution contexts:
 
-   1. **Global Execution Context**: Created when the JavaScript engine starts executing the code. It is the default context and has a global object (e.g., `window` in browsers).
-   2. **Function Execution Context**: Created whenever a function is invoked. Each function has its own execution context.
-   3. **Eval Execution Context**: Created by the `eval()` function, which allows for executing code represented as a string.
+    1. **Global Execution Context**: Created when the JavaScript engine starts executing the code. It is the default context and has a global object (e.g., `window` in browsers).
+    2. **Function Execution Context**: Created whenever a function is invoked. Each function has its own execution context.
+    3. **Eval Execution Context**: Created by the `eval()` function, which allows for executing code represented as a string.
 
-   Understanding execution contexts is crucial for grasping how variable scope and the `this` keyword work in JavaScript.
+    Understanding execution contexts is crucial for grasping how variable scope and the `this` keyword work in JavaScript.
 
-8. **What are the data types in JavaScript?**
-
-   The main data types in JavaScript are: `Number`, `Bigint`, `String`, `Boolean`, `Object`, `Undefined`, `Null`, and `Symbol`
-
-9. **What are the differences between primitives and non-primitives?**
-
-   | Feature           | Primitives                                                             | Non-Primitives                             |
-   | ----------------- | ---------------------------------------------------------------------- | ------------------------------------------ |
-   | Definition        | Basic data types that are immutable                                    | Complex data types that can be modified    |
-   | Examples          | `Number`, `String`, `Boolean`, `Null`, `Undefined`, `Symbol`, `BigInt` | `Object`, `Array`, `Function`              |
-   | Memory Allocation | Stored directly in the stack                                           | Stored as references in the heap           |
-   | Mutability        | Immutable (cannot be changed)                                          | Mutable (can be changed)                   |
-   | Comparison        | Compared by value                                                      | Compared by reference                      |
-   | Performance       | Generally faster                                                       | Generally slower due to reference handling |
-   | Type Checking     | Type is determined at compile time                                     | Type can change at runtime                 |
-
-10. **What are operators? What are the types of operators in JS?**
+11. **What are operators? What are the types of operators in JS?**
 
     Operators are special symbols in JavaScript that perform operations on variables and values. They are used to manipulate data and variables, allowing for calculations, comparisons, and logical operations.
 
@@ -196,7 +249,7 @@
        - `typeof` (Returns the type of a variable)
        - `instanceof` (Checks if an object is an instance of a specific class)
 
-11. **What is the difference between unary, binary, and ternary operators?**
+12. **What is the difference between unary, binary, and ternary operators?**
 
     | Operator Type | Description                             | Example                     |
     | ------------- | --------------------------------------- | --------------------------- |
@@ -204,7 +257,7 @@
     | Binary        | Operates on two operands                | `x + y` (Addition)          |
     | Ternary       | A shorthand for the `if-else` statement | `condition ? expr1 : expr2` |
 
-12. **What is short-circuit evaluation in JS?**
+13. **What is short-circuit evaluation in JS?**
 
     Short-circuit evaluation is a programming technique used in logical operations where the second operand is evaluated only if the first operand does not suffice to determine the value of the expression. This is commonly seen with the logical AND (`&&`) and logical OR (`||`) operators.
 
@@ -223,7 +276,7 @@
 
     This behavior can be useful for optimizing performance and avoiding unnecessary computations or function calls.
 
-13. **What are the types of condition statements in JS?**
+14. **What are the types of condition statements in JS?**
 
     In JavaScript, condition statements are used to perform different actions based on different conditions. The main types of condition statements include:
 
@@ -277,7 +330,7 @@
        condition ? expr1 : expr2;
        ```
 
-14. **What is a loop? What are the types of loops in JS?**
+15. **What is a loop? What are the types of loops in JS?**
 
     A loop is a programming construct that allows you to execute a block of code repeatedly, based on a specified condition. In JavaScript, there are several types of loops:
 
@@ -324,50 +377,6 @@
        for (const key in obj) {
          console.log(key, obj[key]); // Outputs: a 1, b 2, c 3
        }
-       ```
-
-15. **What is hoisting?**
-
-    Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their containing scope during the compile phase. This means that you can use variables and functions before they are declared in the code.
-
-    #### How Hoisting Works
-
-    1. **Variable Hoisting**:
-
-       Variables declared with `var` are hoisted to the top of their function or global scope, but their initialization remains in place. This means that the variable is accessible before its declaration, but its value will be `undefined` until the line where it is initialized is executed.
-
-       ```javascript
-       console.log(myVar); // Output: undefined
-       var myVar = 5;
-       console.log(myVar); // Output: 5
-       ```
-
-       Variables declared with `let` and `const` are also hoisted, but they are not initialized. Accessing them before their declaration results in a `ReferenceError` due to the "temporal dead zone."
-
-       ```javascript
-       console.log(myLet); // ReferenceError: Cannot access 'myLet' before initialization
-       let myLet = 10;
-       ```
-
-    2. **Function Hoisting**:
-
-       Function declarations are fully hoisted, meaning you can call a function before it is defined in the code.
-
-       ```javascript
-       myFunction(); // Output: "Hello, World!"
-
-       function myFunction() {
-         console.log("Hello, World!");
-       }
-       ```
-
-       Function expressions, however, are not hoisted in the same way. If you try to call a function expression before it is defined, you will get a `TypeError`.
-
-       ```javascript
-       myFunc(); // TypeError: myFunc is not a function
-       var myFunc = function () {
-         console.log("Hello, World!");
-       };
        ```
 
 16. **What is the difference between `null` and `undefined`, or `undeclared`?**
@@ -1149,7 +1158,7 @@ There are several types of selectors in JavaScript:
     console.log(reversedNumbers); // Output: [15, 12, 8, 7, 5, 3]
     ```
 
-49. **What are array-like objects In JS?**
+49. **What are array-like objects In JS? How to convert an array-like object into an array?**
 
     Array-like objects in JavaScript are objects that have a length property and indexed elements, but don't have array methods like push, pop, or forEach. Common examples include the arguments object in functions and DOM node lists.
 
